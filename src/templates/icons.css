@@ -1,0 +1,57 @@
+@font-face {
+  font-family: "<%= fontName %>";
+  src: url('<%= fontPath %><%= fontName %>.eot');
+  src: url('<%= fontPath %><%= fontName %>.eot?#iefix') format('eot'),
+       url('<%= fontPath %><%= fontName %>.woff') format('woff'),
+       url('<%= fontPath %><%= fontName %>.woff2') format('woff2'),
+       url('<%= fontPath %><%= fontName %>.ttf') format('truetype'),
+       url('<%= fontPath %><%= fontName %>.svg#<%= fontName %>') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]::before {
+  content: attr(data-icon);
+  position: relative;
+  font-family: 'icons' !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  line-height: 1;
+  font-size: 24px;
+  text-transform: none !important;
+  speak: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^='icon-']::before,
+[class*=' icon-']::before {
+  position: relative;
+  display: block;
+  font-family: 'icons' !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  line-height: 1;
+  text-transform: none !important;
+  speak: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* If the element is `inline`, give it dimensions large enough for the icon. */
+span[class^='icon-'], span[class*=' icon-'] {
+  display: inline-block;
+  min-width: 1em;
+  min-height: 1em;
+}
+
+.icon-bigger {
+  transform: scale(1.4);
+  /* Adjust position to match text */
+  vertical-align: 0.1em;
+}
+
+<% _.each(glyphs, function(glyph) { %>.<%= className %>-<%= glyph.name %>::before { content: "\<%= glyph.codepoint.toString(16).toUpperCase() %>" }
+<% }); %>

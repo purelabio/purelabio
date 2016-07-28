@@ -1,21 +1,21 @@
-@import './common';
+@import './node_modules/tobox/scss/variables';
+@import './node_modules/tobox/scss/utils';
+@import './node_modules/tobox/scss/mixins';
 
-section.hero {
-  height: 760px;
-  background:
-    linear-gradient(
-      rgba(0, 0, 0, 0.6),
-      rgba(0, 0, 0, 0.6)
-    ),
-    url(https://c.stocksy.com/a/xUL300/z0/797627.jpg) no-repeat center center fixed;
-  background-size: cover;
-  color: white;
-  font-family: 'Proxima Nova Rg';
-  font-size: 26px;
-  line-height: 1;
+@import './node_modules/tobox/scss/base/normalize';
+@import './node_modules/tobox/scss/base/layout';
+@import './node_modules/tobox/scss/base/reset';
+@import './node_modules/tobox/scss/base/typography';
+@import './node_modules/tobox/scss/fonts';
+@import './node_modules/tobox/scss/misc';
+@import './node_modules/tobox/scss/simple';
 
-  .title {
-    font-family: 'Proxima Nova Bl';
-    font-size: 40px;
-  }
-}
+$sf-body-max-width: none;
+$sf-space: 0;
+@import './node_modules/stylific/scss/variables';
+@import './node_modules/stylific/scss/mixins';
+@import './node_modules/stylific/scss/layout';
+
+@import './base/fonts';
+
+@import './components/misc';

@@ -4,7 +4,7 @@
   <head>
     <base href="/info/">
     <meta charset="utf-8">
-    <title>{{typeof title === 'string' ? title + ' | ToBox' : 'ToBox'}}</title>
+    <title>{{typeof title === 'string' ? title + ' | purelab.io' : 'purelab.io'}}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="fonts/iconfont/icons.css?{{build_sha1}}">
     <link rel="stylesheet" href="styles/app.css?{{build_sha1}}">
@@ -17,7 +17,8 @@
     <script src="app.js?{{build_sha1}}"></script>
   </head>
   <body>
-    {{include('partials/nav.html', {type: 'absolute'}) }}
+    {{include('partials/header.html')}}
     {{path === 'index.html' ? include('home.html') : content}}
+    {{include('partials/footer.html')}}
   </body>
 </html>
