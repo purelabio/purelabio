@@ -1,0 +1,52 @@
+$-space-props: margin, padding;
+$-space-sides: top, bottom, left, right;
+$-space-ratio: 0.5;
+$-space-min:   0.5;
+$-space-max:     3;
+
+@function getSpacingClass($prop, $side, $value) {
+  @return '.space-#{$prop}-#{$side}-#{str-replace($value + "", ".", "x")}';
+}
+
+@function getValue($value) {
+  @return '#{$value}rem';
+}
+
+@mixin spacing-vert($prop, $value) {
+  #{getSpacingClass($prop, vert, $value)} {
+    #{$prop}-top:      #{getValue($value)};
+    #{$prop}-bottom:   #{getValue($value)};
+  }
+}
+
+@mixin spacing-hor($prop, $value) {
+  #{getSpacingClass($prop, hor, $value)} {
+    #{$prop}-left:     #{getValue($value)};
+    #{$prop}-right:    #{getValue($value)};
+  }
+}
+
+@mixin spacing-single-side($prop, $side, $value) {
+  #{getSpacingClass($prop, $side, $value)} {
+    #{$prop}-#{$side}: #{getValue($value)};
+  }
+}
+
+@each $prop in $-space-props {
+  $value: $-space-min;
+  @while $value <= $-space-max {
+    @include spacing-vert($prop, $value);
+    @include spacing-hor ($prop, $value);
+    $value: $value + $-space-ratio;
+  }
+}
+
+@each $prop in $-space-props {
+  @each $side in $-space-sides {
+    $value: $-space-min;
+    @while $value <= $-space-max {
+      @include spacing-single-side($prop, $side, $value);
+      $value: $value + $-space-ratio;
+    }
+  }
+}

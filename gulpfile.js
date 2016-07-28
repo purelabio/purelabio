@@ -10,6 +10,7 @@ const gulp = require('gulp')
 const webpack = require('webpack')
 const imageminJpegtran = require('imagemin-jpegtran')
 const pngquant = require('imagemin-pngquant')
+const ghpages = require('gh-pages')
 
 const webpackConfig = require('./webpack.config')
 const statilConfig = require('./statil')
@@ -204,12 +205,18 @@ gulp.task('server', () => {
   $.watch(['./webpack.config.js', './devserver.js'], restart)
 })
 
+/* -------------------------------- Publish ---------------------------------*/
+
+gulp.task('deploy', (cb) => (
+  ghpages.publish(out.html, cb)
+))
+
 /* -------------------------------- Default ---------------------------------*/
 
 const tasks = [
   'html:clear', 'html:build', 'styles:build', 'fonts:build',
   'images:build', 'icons:build'
-].concat(deploySettings.buildScripts ? ['scripts:build', 'tar'] : [])
+].concat(deploySettings.buildScripts ? ['scripts:build', 'tar', 'deploy'] : [])
 
 gulp.task('build', gulp.series(tasks))
 

@@ -1,0 +1,25 @@
+$image-url: 'images/' !default;
+
+$color-orange: #FF8D00;
+$color-blue:   #0096FF;
+$color-green:  #278C1F;
+$color-red:    #FF0000;
+
+$color-87: rgba(0, 0, 0, .87);
+$color-54: rgba(0, 0, 0, .54);
+$color-30: rgba(0, 0, 0, .30);
+$color-15: rgba(0, 0, 0, .15);
+$color-04: rgba(0, 0, 0, .04);
+
+$color-hex-87: #212121;
+$color-hex-54: #757575;
+$color-hex-30: #b2b2b2;
+$color-hex-15: #d9d9d9;
+$color-hex-04: #f5f5f5;
+
+$z-overlay: 1000 !default;
+
+$radius-default: 3px;
+
+$transition-duration: 0.1s;
+$transition-function: ease-out;

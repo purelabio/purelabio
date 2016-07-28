@@ -1,0 +1,9 @@
+html {
+  font-size: 16px;
+}
+
+body {
+  color: $color-87;
+  @include font-family('Proxima Nova Rg');
+  @extend .font-2;
+}

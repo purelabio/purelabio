@@ -1,0 +1,667 @@
+.logo {
+  display: block;
+  background: url(#{$image-url}logo.svg) center no-repeat;
+  background-size: contain;
+
+  &::before {
+    content: '';
+    display: block;
+    padding-bottom: 25%;
+  }
+}
+
+.avatar {
+  display: block;
+  width: 1.9rem;
+  background: $color-30 center no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+
+  &::before {
+    content: '';
+    display: block;
+    padding-bottom: 100%;
+  }
+}
+
+.cover {
+  height: 18.28em;
+  background: center no-repeat;
+  background-size: cover;
+
+  &-pattern {
+    background-repeat: repeat-x;
+    background-size: auto 100%;
+  }
+}
+
+.input-field {
+  height: 2.5rem;
+  padding: 0 1rem;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px $color-15;
+  border-radius: $radius-default;
+  @include placeholder($color-30);
+  @extend .font-2;
+
+  &-size {
+    &-m {
+      height: 2rem;
+    }
+
+    &-l {
+      height: 2.5rem;
+    }
+  }
+
+  &:hover {
+    box-shadow: inset 0 0 0 1px $color-30;
+  }
+
+  &:focus {
+    box-shadow: inset 0 0 0 1px $color-blue;
+    @include placeholder($color-15);
+  }
+
+  &.valid {
+    box-shadow: inset 0 0 0 1px $color-green;
+  }
+
+  &.error {
+    box-shadow: inset 0 0 0 1px $color-red;
+  }
+
+  &[disabled] {
+    background: $color-04;
+    box-shadow: inset 0 0 0 1px $color-15;
+    color: $color-30;
+  }
+
+  &:-webkit-autofill {
+    box-shadow: inset 0 0 0 1px $color-blue,
+                inset 0 0 0 2rem #fff;
+  }
+}
+
+textarea.input-field {
+  height: auto;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border: 0;
+  resize: none;
+}
+
+.form-error {
+  color: $color-red;
+  @extend .font-1;
+}
+
+.button {
+  padding: 0.5rem 1rem; // size L by default
+  border-radius: $radius-default;
+  text-decoration: none;
+  @extend .transition-all;
+
+  &-size {
+    &-m {
+      padding-top: 0.25rem;
+      padding-bottom: 0.25rem;
+    }
+
+    &-l {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+  }
+
+  &-orange {
+    background: $color-orange;
+    color: #fff;
+
+    .icon {
+      color: #fff;
+    }
+
+    &:hover {
+      background-color: #ffa445; // TODO: assign to variable
+      color: #fff;
+    }
+
+    &:active {
+      background-color: #e57700; // TODO: assign to variable
+    }
+
+    &[disabled],
+    &.disabled {
+      background-color: #ffddb2; // TODO: assign to variable
+    }
+  }
+
+  &-green {
+    background: rgba(39, 140, 31, 0.04);
+    box-shadow: inset 0 0 0 1px #278C1F;
+    color: $color-87;
+
+    .icon {
+      color: #278C1F;
+    }
+
+    &:hover {
+      background: #278C1F;
+      color: #fff;
+
+      .icon {
+        color: #fff;
+      }
+    }
+
+    &:active {
+      background: #237B1C;
+      box-shadow: inset 0 0 0 1px #237B1C;
+    }
+  }
+
+  &-red {
+    background: rgba(255, 0, 0, 0.04);
+    box-shadow: inset 0 0 0 1px #FF0000;
+    color: $color-87;
+
+    .icon {
+      color: #FF0000;
+    }
+
+    &:hover {
+      background: #FF0000;
+      color: #fff;
+
+      .icon {
+        color: #fff;
+      }
+    }
+
+    &:active {
+      background: #DE0000;
+      box-shadow: inset 0 0 0 1px #DE0000;
+    }
+  }
+
+  &-gray {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    background: $color-04;
+    color: $color-54;
+
+    .icon {
+      color: $color-30;
+    }
+
+    &:hover {
+      color: $color-87;
+
+      .icon {
+        color: $color-54;
+      }
+    }
+
+    &.selected,
+    &.active {
+      background: $color-orange;
+      color: #fff;
+
+      .icon {
+        color: #fff;
+      }
+    }
+  }
+
+  &-transparent {
+    padding: 0;
+
+    .icon {
+      color: $color-30;
+
+      &-star-full {
+        color: rgb(249, 182, 1);
+      }
+
+      &-heart-full {
+        color: rgb(255, 0, 0);
+      }
+    }
+
+    &:hover {
+      .icon {
+        color: $color-54;
+
+        &-star-full {
+          color: rgba(249, 182, 1, 0.54);
+        }
+
+        &-heart-full {
+          color: rgba(255, 0, 0, 0.54);
+        }
+      }
+    }
+  }
+
+  &-border {
+    &-orange {
+      background: #fff;
+      box-shadow: inset 0 0 0 1px $color-orange;
+      color: $color-87;
+
+      .icon {
+        color: $color-orange;
+      }
+
+      &:hover {
+        background-color: $color-orange;
+        color: #fff;
+
+        .icon {
+          color: #fff;
+        }
+      }
+
+      &:active {
+        background-color: #e57700; // TODO: assign to variable
+        box-shadow: inset 0 0 0 1px #e57700; // TODO: assign to variable
+      }
+
+      &[disabled],
+      &.disabled {
+        background-color: $color-04;
+        box-shadow: inset 0 0 0 1px $color-15;
+        color: $color-15;
+      }
+    }
+
+    &-gray {
+      background: #fff;
+      box-shadow: inset 0 0 0 1px $color-15;
+      color: $color-54;
+
+      .icon {
+        color: $color-30;
+      }
+
+      &:hover,
+      &:active {
+        background-color: $color-04;
+        box-shadow: inset 0 0 0 1px $color-30;
+        color: $color-87;
+
+        .icon {
+          color: $color-54;
+        }
+      }
+
+      &:active {
+        background-color: $color-15;
+      }
+
+      &[disabled],
+      &.disabled {
+        background-color: $color-04;
+        color: $color-15;
+      }
+    }
+  }
+
+  .icon {
+    @extend .transition-color;
+
+    @include not-last {
+      @extend .space-out-0x5-r;
+    }
+  }
+}
+
+.amount {
+  @extend .row-start-center;
+  @extend .shadow-in-15hex;
+  @extend .rounded;
+
+  .btn-l-bg {
+    @include first {
+      @extend .rounded-l;
+    }
+
+    @include last {
+      @extend .rounded-r;
+    }
+
+    &[disabled] {
+      @extend .bg-white;
+      @extend .no-events;
+    }
+  }
+
+  &-size {
+    &-m {
+      .btn-l-bg {
+        @extend .space-in-0x5-h;
+        @extend .space-in-0x75-v;
+      }
+    }
+
+    &-l {
+      .btn-l-bg {
+        @extend .space-in-0x5-h;
+        @extend .space-in-1-v;
+      }
+    }
+  }
+}
+
+.checkbox {
+  width: 1rem;
+  height: 1rem;
+  @extend .relative;
+  @extend .overflow-hidden;
+  @extend .bg-white;
+  @extend .rounded;
+
+  &[disabled] {
+    @extend .no-events;
+    @extend .bg-04;
+  }
+
+  &--input {
+    left: -999em;
+    @extend .abs;
+
+    &:checked + .checkbox--label {
+      @extend .bg-orange;
+      @extend .color-white;
+    }
+  }
+
+  &--label {
+    width: 100%;
+    height: 100%;
+    color: transparent;
+    @extend .shadow-in-15;
+    @extend .rounded;
+    @extend .pointer;
+
+    &:hover {
+      @extend .shadow-in-30;
+    }
+  }
+
+  & + .label {
+    @extend .space-out-0x5-l;
+  }
+}
+
+.radio {
+  position: relative;
+  overflow: hidden;
+  width: calc(1rem + 2px);
+  height: calc(1rem + 2px);
+  background: #fff;
+  border-radius: 50%;
+
+  &[disabled] {
+    background: $color-04;
+    pointer-events: none;
+  }
+
+  &--input {
+    position: absolute;
+    left: -999em;
+
+    &:checked + .radio--label {
+      border-color: $color-orange;
+      background: $color-orange;
+    }
+  }
+
+  &--label {
+    height: 100%;
+    border: 1px solid $color-15;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 4px #fff;
+    cursor: pointer;
+
+    &:hover {
+      border-color: $color-30;
+    }
+  }
+
+  & + .label {
+    margin-left: 0.8rem;
+  }
+}
+
+.label {
+  color: $color-54;
+  cursor: pointer;
+
+  &:hover,
+  &.active,
+  &.selected {
+    color: $color-87;
+  }
+}
+
+.select {
+  line-height: 1;
+  height: 2.3em;
+  padding: 0 1rem;
+  border: 1px solid $color-15;
+  border-radius: $radius-default;
+  color: $color-30;
+  cursor: pointer;
+
+  &.selected {
+    color: $color-87;
+  }
+
+  &--arrow {
+    width: 0;
+    margin-top: 0.6em;
+    border-width: 0.6em 0.3em;
+    border-style: solid;
+    border-color: $color-30 transparent transparent;
+  }
+
+  &:hover {
+    border-color: $color-30;
+    color: $color-54;
+
+    .select--arrow {
+      border-top-color: $color-54;
+    }
+  }
+}
+
+.date-range {
+  line-height: 1;
+  height: 2.3rem;
+  border: 1px solid $color-15;
+  border-radius: $radius-default;
+
+  &--item {
+    padding: 0 0.5rem;
+    cursor: pointer;
+
+    &:not(:first-child) {
+      border-left: 1px solid $color-15;
+    }
+  }
+
+  .icon {
+    margin-right: 0.5rem;
+  }
+}
+
+.icon {
+  font-size: 1rem;
+
+  &-0x5 {
+    font-size: 0.5rem;
+  }
+
+  &-0x75 {
+    font-size: 0.75rem;
+  }
+
+  &-1x5 {
+    font-size: 1.5rem;
+  }
+
+  &-2 {
+    font-size: 2rem;
+  }
+
+  &-2x5 {
+    font-size: 2.5rem;
+  }
+
+  &-3 {
+    font-size: 3rem;
+  }
+
+  &-0x75 {
+    font-size: 0.75rem;
+  }
+}
+
+.breadcrumbs {
+  color: $color-30;
+
+  &--item {
+    margin: 0.1em 0;
+    color: $color-30;
+
+    &:hover {
+      color: $color-54;
+    }
+
+    &::after {
+      content: '/';
+      display: inline-block;
+      margin: 0 1.2rem;
+    }
+  }
+
+  &--divider {
+    display: none;
+  }
+}
+
+.icon-currency {
+  font-size: .78em;
+}
+
+.overlay {
+  position: fixed;
+  z-index: $z-overlay;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.9); // TODO: assign to variable
+}
+
+.underlined-tab {
+  @extend .color-54;
+
+  &.active,
+  &.selected {
+    box-shadow: inset 0 -2px $color-orange;
+    @extend .color-87;
+  }
+
+  &-s {
+    @extend .space-in-0x5-v;
+
+    @include not-first {
+      @extend .space-out-1x5-l;
+    }
+  }
+
+  &-m {
+    @extend .space-in-1-v;
+
+    @include not-first {
+      @extend .space-out-1-l;
+    }
+  }
+
+  &-l {
+    @extend .space-in-1x5-v;
+
+    @include not-first {
+      @extend .space-out-2-l;
+    }
+  }
+}
+
+.arrow {
+  @extend .relative;
+
+  &::before {
+    content: '';
+    border: solid transparent;
+    @extend .abs;
+    @extend .block;
+  }
+
+  &::before {
+    border-width: 0 0.5rem 0.5rem;
+  }
+
+  &-54 {
+    &-t {
+      @extend .arrow;
+
+      &::before {
+        bottom: 100%;
+        border-bottom-color: $color-54;
+      }
+
+      &-r {
+        @extend .arrow-54-t;
+
+        &::before {
+          right: 0;
+        }
+
+        &-0x5 {
+          @extend .arrow-54-t-r;
+
+          &::before {
+            @extend .space-out-0x5-r;
+          }
+        }
+      }
+    }
+  }
+
+  &-t {
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      border: solid transparent;
+    }
+
+    &::before {
+      margin-left: -9px;
+      border-width: 0 9px 9px;
+      border-bottom-color: $color-hex-15;
+    }
+
+    &::after {
+      margin-left: -8px;
+      border-width: 0 8px 8px;
+      border-bottom-color: #fff;
+    }
+  }
+}

@@ -17,18 +17,7 @@
     <script src="app.js?{{build_sha1}}"></script>
   </head>
   <body>
-    <div>
-      {{include('partials/nav.html', {type: 'absolute'}) }}
-      <div>
-        <div class='info'>
-          <div class='container row-end-stretch'>
-            <div class='info-content'>
-              {{path === 'index.html' ? include('home.html') : content}}
-            </div>
-          </div>
-        </div>
-      </div>
-      {{include('partials/footer.html')}}
-    </div>
+    {{include('partials/nav.html', {type: 'absolute'}) }}
+    {{path === 'index.html' ? include('home.html') : content}}
   </body>
 </html>

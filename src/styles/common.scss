@@ -1,4 +1,6 @@
-@import './node_modules/tobox/scss/variables';
+@import '../fonts/ProximaNova/stylesheet.css';
+
+@import './scss/variables';
 
 $sf-body-max-width: none;
 $sf-space: 0;
@@ -8,17 +10,17 @@ $image-url: '../images/';
 @import './node_modules/stylific/scss/mixins';
 @import './node_modules/stylific/scss/layout';
 
-@import './node_modules/tobox/scss/web-common';
+@import './scss/web-common';
 
-@import './node_modules/tobox/scss/base/normalize';
-@import './node_modules/tobox/scss/base/reset';
+@import './scss/base/normalize';
+@import './scss/base/reset';
 
-@import './node_modules/tobox/scss/base/typography';
-@import './node_modules/tobox/scss/base/layout';
+@import './scss/base/typography';
+@import './scss/base/layout';
 
-@import './node_modules/tobox/scss/grid';
+@import './scss/grid';
 
-@import './node_modules/tobox/scss/simple';
+@import './scss/simple';
 
 
 .footer {

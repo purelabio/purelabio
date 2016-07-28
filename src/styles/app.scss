@@ -1,2 +1,21 @@
 @import './common';
-@import '../fonts/ProximaNova/stylesheet.css'
+
+section.hero {
+  height: 760px;
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ),
+    url(https://c.stocksy.com/a/xUL300/z0/797627.jpg) no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  font-family: 'Proxima Nova Rg';
+  font-size: 26px;
+  line-height: 1;
+
+  .title {
+    font-family: 'Proxima Nova Bl';
+    font-size: 40px;
+  }
+}

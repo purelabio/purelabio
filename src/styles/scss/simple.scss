@@ -1,0 +1,626 @@
+.space {
+  @include space(margin,     0);
+  @include space(margin,  0.25);
+  @include space(margin,   0.5);
+  @include space(margin,  0.75);
+  @include space(margin,     1);
+  @include space(margin,   1.5);
+  @include space(margin,     2);
+  @include space(margin,   2.5);
+  @include space(margin,     3);
+  @include space(margin,   3.5);
+  @include space(margin,     4);
+  @include space(margin,   4.5);
+  @include space(margin,     5);
+  @include space(margin,     8);
+
+  @include space(padding,    0);
+  @include space(padding, 0.25);
+  @include space(padding,  0.5);
+  @include space(padding, 0.75);
+  @include space(padding,    1);
+  @include space(padding, 1.25);
+  @include space(padding,  1.5);
+  @include space(padding,    2);
+  @include space(padding,  2.5);
+  @include space(padding,    3);
+  @include space(padding,  3.5);
+  @include space(padding,    4);
+  @include space(padding,    5);
+  @include space(padding,    6);
+}
+
+.shadow {
+  @include shadow('04',    $color-04,     inset);
+  @include shadow('15',    $color-15,     inset);
+  @include shadow('15',    $color-15);
+  @include shadow('15hex', $color-hex-15, inset);
+  @include shadow('15hex', $color-hex-15);
+  @include shadow('30',    $color-30,     inset);
+}
+
+.abs {
+  @include position(absolute);
+}
+
+.fix {
+  @include position(fixed);
+}
+
+.width {
+  @include width(0, 34);
+
+  &-100p {
+    width: 100%;
+  }
+
+  &-fit {
+    width: fit-content;
+  }
+}
+
+.block {
+  display: block;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+  @extend .flex;
+}
+
+.block-100p {
+  @extend .width-100p;
+  @extend .block;
+}
+
+.relative {
+  position: relative;
+}
+
+// Note: this is incompatible with [aria-label] on the same element.
+.square {
+  &::before {
+    content: '';
+    display: block;
+    padding-bottom: 100%;
+  }
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.circle-cover {
+  @extend .circle;
+  @extend .square-cover;
+}
+
+.bg {
+  &-center {
+    background: center no-repeat;
+  }
+
+  &-cover {
+    background-size: cover;
+    @extend .bg-center;
+  }
+
+  &-contain {
+    background-size: contain;
+    @extend .bg-center;
+  }
+}
+
+.rounded {
+  border-radius: $radius-default;
+
+  &-t {
+    border-radius: $radius-default $radius-default 0 0;
+
+    &-l {
+      border-radius: $radius-default 0 0 0;
+    }
+
+    &-r {
+      border-radius: 0 $radius-default 0 0;
+    }
+  }
+
+  &-b {
+    border-radius: 0 0 $radius-default $radius-default;
+
+    &-l {
+      border-radius: 0 0 0 $radius-default;
+    }
+
+    &-r {
+      border-radius: 0 0 $radius-default 0;
+    }
+  }
+
+  &-l {
+    border-radius: $radius-default 0 0 $radius-default;
+  }
+
+  &-r {
+    border-radius: 0 $radius-default $radius-default 0;
+  }
+}
+
+.striked {
+  text-decoration: line-through;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.strike {
+  text-decoration: line-through;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.sticker {
+  border-radius: 1rem;
+  color: #fff;
+  @extend .space-in-0x5-h;
+  @extend .font-1;
+
+  &-orange {
+    background: rgba(255, 141, 0, 0.87);
+  }
+
+  &-green {
+    background: rgba(46, 204, 113, 0.87);
+  }
+
+  &-blue {
+    background: rgba(52, 152, 219, 0.87);
+  }
+}
+
+.timer {
+  background: rgba(255, 141, 0, 0.7);
+  @extend .space-in-0x5-v;
+  @extend .space-in-1-h;
+  @extend .font-1;
+  @extend .color-white;
+}
+
+.square-cover {
+  @extend .square;
+  @extend .bg-cover;
+}
+
+.square-rounded-cover {
+  @extend .square-cover;
+  @extend .rounded;
+}
+
+.rounded-cover {
+  @extend .rounded;
+  @extend .bg-cover;
+}
+
+.border {
+  &-out {
+    border: 1px solid $color-hex-15;
+
+    &-t {
+      border-top: 1px solid $color-hex-15;
+    }
+
+    &-b {
+      border-bottom: 1px solid $color-hex-15;
+    }
+  }
+
+  &-in {
+    box-shadow: inset 0 0 0 1px $color-hex-15;
+
+    &-t {
+      box-shadow:   inset 0 1px $color-hex-15;
+    }
+
+    &-b {
+      box-shadow:  inset 0 -1px $color-hex-15;
+    }
+
+    &-l {
+      box-shadow:   inset 1px 0 $color-hex-15;
+    }
+  }
+}
+
+.bg {
+  &-04 {
+    background-color: $color-04;
+
+    &-hex {
+      background-color: $color-hex-04;
+    }
+  }
+
+  &-15 {
+    background-color: $color-15;
+
+    &-hex {
+      background-color: $color-hex-15;
+    }
+  }
+
+  &-30 {
+    background-color: $color-30;
+
+    &-hex {
+      background-color: $color-hex-30;
+    }
+  }
+
+  &-54 {
+    background-color: $color-54;
+
+    &-hex {
+      background-color: $color-hex-54;
+    }
+  }
+
+  &-orange {
+    background-color: $color-orange;
+  }
+
+  &-red {
+    background-color: $color-red;
+  }
+
+  &-blue {
+    background-color: $color-blue;
+  }
+
+  &-green {
+    background-color: $color-green;
+  }
+
+  &-white {
+    background-color: #fff;
+  }
+}
+
+.color {
+  &-04 {
+    color: $color-04;
+
+    &-hex {
+      color: $color-hex-04;
+    }
+  }
+
+  &-15 {
+    color: $color-15;
+  }
+
+  &-30 {
+    color: $color-30;
+  }
+
+  &-54 {
+    color: $color-54;
+  }
+
+  &-87 {
+    color: $color-87;
+  }
+
+  &-orange {
+    color: $color-orange;
+  }
+
+  &-red {
+    color: $color-red;
+  }
+
+  &-blue {
+    color: $color-blue;
+  }
+
+  &-green {
+    color: $color-green;
+  }
+
+  &-white {
+    color: #fff;
+  }
+}
+
+.hover {
+  &-bg {
+    &-04 {
+      &:hover {
+        @extend .bg-04;
+      }
+    }
+
+    &-white {
+      &:hover {
+        @extend .bg-white;
+      }
+    }
+  }
+
+  &-color {
+    &-54 {
+      &:hover {
+        @extend .color-54;
+      }
+    }
+
+    &-87 {
+      &:hover {
+        @extend .color-87;
+      }
+    }
+
+    &-orange {
+      &:hover {
+        @extend .color-orange;
+      }
+    }
+  }
+}
+
+.reverse {
+  transform: matrix(1, 0, 0, -1, 0, 0);
+}
+
+.inp {
+  &-m {
+    @extend .input-field;
+    @extend .input-field-size-m;
+  }
+
+  &-l {
+    @extend .input-field;
+    @extend .input-field-size-l;
+  }
+}
+
+.btn {
+  &-m {
+    @extend .button;
+    @extend .button-size-m;
+
+    &-o {
+      @extend .btn-m;
+      @extend .button-orange;
+    }
+
+    &-bo {
+      @extend .btn-m;
+      @extend .button-border-orange;
+    }
+
+    &-bg {
+      @extend .btn-m;
+      @extend .button-border-gray;
+    }
+
+    &-g {
+      @extend .btn-m;
+      @extend .button-green;
+    }
+
+    &-r {
+      @extend .btn-m;
+      @extend .button-red;
+    }
+  }
+
+  &-l {
+    @extend .button;
+    @extend .button-size-l;
+
+    &-o {
+      @extend .btn-l;
+      @extend .button-orange;
+    }
+
+    &-bo {
+      @extend .btn-l;
+      @extend .button-border-orange;
+    }
+
+    &-bg {
+      @extend .btn-l;
+      @extend .button-border-gray;
+    }
+
+    &-g {
+      @extend .btn-l;
+      @extend .button-green;
+    }
+
+    &-r {
+      @extend .btn-l;
+      @extend .button-red;
+    }
+  }
+
+  &-t {
+    @extend .button;
+    @extend .button-transparent;
+  }
+}
+
+.amt {
+  &-m {
+    @extend .amount;
+    @extend .amount-size-m;
+  }
+
+  &-l {
+    @extend .amount;
+    @extend .amount-size-l;
+  }
+}
+
+.no-events {
+  pointer-events: none;
+}
+
+.overflow {
+  &-hidden {
+    overflow: hidden;
+  }
+
+  &-x-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  &-y-scroll {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+  @extend .nowrap;
+  @extend .block-100p;
+  @extend .overflow-hidden;
+}
+
+.family {
+  &-light {
+    @include font-family(LatoLight);
+  }
+
+  &-semibold {
+    @include font-family(LatoSemiBold);
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.align {
+  &-left {
+    text-align: left;
+  }
+
+  &-right {
+    text-align: right;
+  }
+
+  &-center {
+    text-align: center;
+  }
+}
+
+.clearfix {
+  &::before,
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+.active-button {
+  content: '';
+  position: absolute;
+  left: -2.5rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+
+  &--radio {
+    margin-top: 0.2rem;
+    box-shadow: 1px 0 $color-15,
+                0 1px $color-15,
+                -1px 0 $color-15,
+                0 -1px $color-15;
+
+    border: white solid 4px;
+  }
+
+  &--plus {
+    margin-top: 0.6rem;
+    color: $color-orange;
+    border: 1px solid $color-orange;
+
+    .icon {
+      font-size: 0.8rem;
+      display: block;
+      margin-top: 1px;
+      margin-left: 1px;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.flex {
+  &-shrink {
+    &-0 {
+      flex-shrink: 0;
+    }
+  }
+}
+
+.drop-shadow {
+  box-shadow: 0 2px 10px $color-15;
+}
+
+.transition {
+  &-none {
+    transition: none;
+  }
+
+  @include transition(all);
+  @include transition(color);
+}
+
+.centred {
+  &-v {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.utab {
+  @extend .underlined-tab;
+
+  &-s {
+    @extend .utab;
+    @extend .underlined-tab-s;
+  }
+
+  &-m {
+    @extend .utab;
+    @extend .underlined-tab-m;
+  }
+
+  &-l {
+    @extend .utab;
+    @extend .underlined-tab-l;
+  }
+}
