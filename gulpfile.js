@@ -207,6 +207,9 @@ gulp.task('server', () => {
 
 /* -------------------------------- Publish ---------------------------------*/
 
+// Deploy from shell
+// git subtree push --prefix dist origin gh-pages
+
 gulp.task('deploy', (cb) => (
   ghpages.publish(out.html, cb)
 ))
