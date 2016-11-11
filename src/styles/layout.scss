@@ -1,3 +1,8 @@
+html * {
+  box-sizing: border-box;
+  max-height: 99999rem;
+}
+
 .container {
   @extend .padding-2x5-h;
 }
