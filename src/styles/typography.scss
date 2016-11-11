@@ -1,0 +1,69 @@
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  @extend .color-text;
+  @extend .font-2;
+}
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    @extend .font-#{7 - $i};
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+.font-1 {
+  line-height:    1rem; // 16px
+  font-size:   0.75rem; // 12px
+}
+
+.font-2 {
+  line-height:  1.5rem; // 24px
+  font-size:  0.875rem; // 14px
+}
+
+.font-3 {
+  line-height:  1.5rem; // 24px
+  font-size: 0.9375rem; // 15px
+}
+
+.font-4 {
+  line-height:    2rem; // 32px
+  font-size:   1.25rem; // 20px
+}
+
+.font-5 {
+  line-height:    2rem; // 32px
+  font-size:    1.5rem; // 24px
+}
+
+.font-6 {
+  line-height:  2.5rem; // 40px
+  font-size:      2rem; // 32px
+}
+
+.undecorated {
+  text-decoration: none;
+}
+
+.children-undecorated > * {
+  @extend .undecorated;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.pointer {
+  cursor: pointer;
+}

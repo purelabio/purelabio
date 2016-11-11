@@ -1,69 +1,34 @@
 'use strict'
 
 const bs = require('browser-sync').create()
-const proxy = require('http-proxy').createProxyServer()
+const mapValues = require('lodash/mapValues')
+
 const config = require('./webpack.config')
-
-const prod = process.env.NODE_ENV === 'production'
-
-proxy.on('error', err => {
-  console.error(err)
-})
+const compiler = require('webpack')(extend(config, {
+  entry: mapValues(config.entry, x => ['webpack-hot-middleware/client', x])
+}))
 
 bs.init({
-  startPath: '/info/',
+  startPath: '/',
   server: {
     baseDir: 'dist',
     middleware: [
-      ...(prod ? [] : hmr()),
-      (req, res, next) => {
-        if (shouldShorten(req.url)) {
-          req.url = req.url.replace(/^\/info\//, '').replace(/^[/]*/, '/')
-        }
-        next()
-      },
-      (req, res, next) => {
-        if (/^\/api\//.test(req.url)) {
-          proxy.web(req, res, {target: 'http://web.tobox.ru'})
-        } else {
-          next()
-        }
-      }
+      require('webpack-dev-middleware')(compiler, {
+        publicPath: '/',
+        noInfo: true
+      }),
+      require('webpack-hot-middleware')(compiler)
     ]
   },
-  port: 8888,
+  port: 8080,
   files: 'dist',
   open: false,
   online: false,
   ui: false,
-  // ghostMode: false,
+  ghostMode: false,
   notify: false
 })
 
-function hmr () {
-  const compiler = require('webpack')(extend(config, {
-    entry: ['webpack-hot-middleware/client', config.entry]
-  }))
-
-  return [
-    require('webpack-dev-middleware')(compiler, {
-      publicPath: '/info',
-      noInfo: true
-    }),
-    require('webpack-hot-middleware')(compiler)
-  ]
-}
-
-function shouldShorten (url) {
-  return /info\/app.js/.test(url)
-    ? !prod
-    : true
-}
-
-function extend () {
-  return [].reduce.call(arguments, assign, {})
-}
-
-function assign (left, right) {
-  return Object.assign(left, right)
+function extend (...args) {
+  return args.reduce(Object.assign, {})
 }

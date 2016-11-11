@@ -1,0 +1,60 @@
+.bg-center  {@include bg-center;}
+.bg-cover   {@include bg-cover;}
+.bg-contain {@include bg-contain;}
+
+// Note: this is incompatible with [aria-label] on the same element.
+.square::before {
+  content: '';
+  display: block;
+  padding-bottom: 100%;
+}
+
+.square-cover {
+  @extend .square;
+  @extend .bg-cover;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.circle-cover {
+  @extend .circle;
+  @extend .square-cover;
+}
+
+.block {
+  display: block;
+}
+
+.block-100p {
+  @extend .block;
+  @extend .width-100p;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.input {
+  border: 0;
+  @extend .padding-0x5;
+  @extend .rounded;
+  @extend .font-2;
+  @extend .color-text;
+}
+
+.button {
+  border: 0;
+  @extend .padding-0x5-v;
+  @extend .padding-1x5-h;
+  @extend .rounded;
+  @extend .font-2;
+  @extend .align-center;
+}
+
+.button-white {
+  @extend .button;
+  @extend .bg-white;
+  @extend .color-primary;
+}

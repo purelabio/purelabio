@@ -10,7 +10,8 @@
   ],
   "rules": {
     "camelcase": 0,
-    "comma-dangle": 2,
+    "comma-dangle": 0,
+    "comma-spacing": 2,
     "consistent-return": 2,
     "curly": [2, "multi-line"],
     "dot-notation": [2, {"allowKeywords": true}],
@@ -30,12 +31,12 @@
     "no-loop-func": 0,
     "no-mixed-spaces-and-tabs": 2,
     "no-restricted-globals": [2,
-        // window (browser)
-        "alert", "confirm", "event", "fetch", "find", "focus", "history",
-        "length", "location", "name", "navigator", "open", "parent", "print",
-        "prompt", "scroll", "self", "status", "stop", "top",
-        // global (node)
-        "root"
+      // window (browser)
+      "alert", "blur", "confirm", "event", "fetch", "find", "focus", "history",
+      "length", "location", "name", "navigator", "open", "parent", "print",
+      "prompt", "scroll", "self", "status", "stop", "top",
+      // global (node)
+      "root"
     ],
     "no-shadow-restricted-names": 2,
     "no-sparse-arrays": 2,
@@ -43,6 +44,7 @@
     "no-trailing-spaces": 2,
     "no-unexpected-multiline": 2,
     "no-unreachable": 2,
+    "no-unused-vars": [2, {"argsIgnorePattern": "^_", "varsIgnorePattern": "^_"}],
     "no-var": 2,
     "object-curly-spacing": [2, "never"],
     "object-shorthand": 2,
@@ -65,6 +67,7 @@
     "React": true,
     "_": true,
     "i18n": true,
+    "i18n_": true,
     "Promise": true
   }
 }
