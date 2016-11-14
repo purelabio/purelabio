@@ -5,7 +5,7 @@ html {
 body {
   font-family: 'Open Sans', sans-serif;
   @extend .color-text;
-  @extend .font-2;
+  @extend .font-4;
 }
 
 @for $i from 1 through 6 {
@@ -46,6 +46,10 @@ h1, h2, h3, h4, h5, h6 {
 .font-6 {
   line-height:  2.5rem; // 40px
   font-size:      2rem; // 32px
+}
+
+.weight-600 {
+  font-weight: 600;
 }
 
 .undecorated {

@@ -17,7 +17,8 @@ bs.init({
         publicPath: '/',
         noInfo: true
       }),
-      require('webpack-hot-middleware')(compiler)
+      require('webpack-hot-middleware')(compiler),
+      require('connect-history-api-fallback')()
     ]
   },
   port: 8080,

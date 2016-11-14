@@ -1,3 +1,11 @@
+html {
+  @extend .bg-divider;
+}
+
+body {
+  @extend .bg-white;
+}
+
 .bg-center  {@include bg-center;}
 .bg-cover   {@include bg-cover;}
 .bg-contain {@include bg-contain;}
@@ -38,7 +46,7 @@
 
 .input {
   border: 0;
-  @extend .padding-0x5;
+  @extend .padding-1;
   @extend .rounded;
   @extend .font-2;
   @extend .color-text;

@@ -13,7 +13,8 @@
 @include color('white',         $color-white);
 
 .shadow {
-  @include shadow('dark', $color-primary-dark, 'inset');
+  @include shadow('dark',    $color-primary-dark, 'inset');
+  @include shadow('divider', $color-divider,      'inset');
 }
 
 .abs {
@@ -29,7 +30,7 @@
 }
 
 .width {
-  @include sizing(width, 0, 8);
+  @include sizing(width, 0, 24);
 }
 
 .width-100p {

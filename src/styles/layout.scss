@@ -5,4 +5,15 @@ html * {
 
 .container {
   @extend .padding-2x5-h;
+  width: 770px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container-wide {
+  @extend .padding-2x5-h;
+}
+
+ul, ol {
+  @extend .padding-1x5-l;
 }

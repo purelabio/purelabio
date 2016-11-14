@@ -11,16 +11,15 @@ export function Root ({children}) {
 
 function Header () {
   return (
-    <header className='container row-between-center padding-1-v
-                       color-dark color-links-primary-dark
-                       bg-white uppercase fix-t-l fix-t-r'
-            style={{zIndex: '100'}}>
-      <Link to='' className='undecorated'>Purelab.io</Link>
-      <div className='row-start-center children-margin-1-h children-undecorated'>
+    <header className='row-between-center container-wide padding-1-v'>
+      <div className='row-start-center children-undecorated children-margin-3-h
+                      uppercase font-2 weight-600 color-links-text'>
+        <Link to=''>Purelab.io</Link>
         <a href='#whoweare'>Who we are</a>
-        <a href=''>Portfolio</a>
-        <a href=''>Contacts</a>
+        <a href='#portfolio'>Portfolio</a>
+        <a href='#contacts'>Contacts</a>
       </div>
+      <button className='button'>Go!</button>
     </header>
   )
 }
