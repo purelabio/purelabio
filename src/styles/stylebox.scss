@@ -13,8 +13,14 @@
 @include color('white',         $color-white);
 
 .shadow {
-  @include shadow('dark',    $color-primary-dark, 'inset');
-  @include shadow('divider', $color-divider,      'inset');
+  @include shadow('primary',       $color-primary, 'inset');
+  @include shadow('primary-dark',  $color-primary-dark, 'inset');
+  @include shadow('primary-light', $color-primary-light, 'inset');
+  @include shadow('text',          $color-text, 'inset');
+  @include shadow('text-light',    $color-text-light, 'inset');
+  @include shadow('divider',       $color-divider, 'inset');
+  @include shadow('accent',        $color-accent, 'inset');
+  @include shadow('white',         $color-white, 'inset');
 }
 
 .abs {
@@ -39,4 +45,10 @@
 
 .rounded {
   @include rounding($radius);
+}
+
+@include button('primary', $color-primary, $color-white, null);
+
+.button-primary {
+  @extend .button;
 }

@@ -52,6 +52,10 @@ body {
   @extend .color-text;
 }
 
+.input:focus {
+  outline-color: $color-primary-light;
+}
+
 .button {
   border: 0;
   @extend .padding-0x5-v;
@@ -60,10 +64,4 @@ body {
   @extend .font-2;
   @extend .align-center;
   @extend .undecorated;
-}
-
-.button-white {
-  @extend .button;
-  @extend .bg-white;
-  @extend .color-primary;
 }

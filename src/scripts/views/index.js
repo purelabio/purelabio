@@ -4,7 +4,7 @@ export function Index () {
       <div className='container align-center'>
         <h1 className='margin-3-t'>
           Let&rsquo;s create something awesome<br />
-          that your users will love.
+          that your users will love
         </h1>
         <p className='color-text-light'>
           We&nbsp;are the consulting company of&nbsp;developers and designers,
@@ -15,7 +15,7 @@ export function Index () {
           <input type='email'
                  placeholder='Enter your email'
                  className='input width-24 shadow-in-divider rounded-l' />
-          <button className='button rounded-r'>Go!</button>
+          <button className='button-primary rounded-r'>Go!</button>
         </form>
       </div>
       <div className='container-wide margin-5-t' style={{
