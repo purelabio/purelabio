@@ -67,7 +67,7 @@ export class Carousel extends React.Component {
             {_.times(children.length, i => (
               <button type='button'
                       style={{width: '0.75rem', height: '0.75rem', padding: '0'}}
-                      className={`button shadow-in-primary circle
+                      className={`button shadow-in-primary circle outline-0
                                   ${i === index ? 'bg-primary' : 'bg-white'}`}
                       onClick={() => {this.goto(i)}}
                       key={i}
