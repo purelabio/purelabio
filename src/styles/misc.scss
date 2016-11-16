@@ -84,11 +84,15 @@ body {
 }
 
 .slide-transition {
-  transition: all 0.3s ease-in;
+  transition: all 0.3s $transition-function;
 }
 
 .transition-all {
-  transition: all 0.2s ease-in;
+  transition: all $transition-duration $transition-function;
+}
+
+.transition-color {
+  transition: color $transition-duration $transition-function;
 }
 
 .opacity-0 {

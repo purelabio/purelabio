@@ -93,7 +93,7 @@ export function CarouselItem ({pics, name, href}) {
       </div>
       <a href={href} target='_blank'
          className='abs-t-l abs-b-r col-center-center opacity-0 hover-opacity-0x9
-                    bg-primary undecorated color-white transition-all'>
+                    bg-primary undecorated color-hover-white transition-all'>
         {name}
       </a>
     </div>
