@@ -1,3 +1,5 @@
+import {Carousel, CarouselItem} from './carousel'
+
 export function Index () {
   return (
     <div className='col-start-stretch padding-8-b'>
@@ -18,11 +20,13 @@ export function Index () {
           <button className='button-primary rounded-r'>Go!</button>
         </form>
       </div>
-      <div className='container-wide margin-5-t' style={{
-        background: 'url(/images/macbook.svg) top center no-repeat',
-        backgroundSize: 'contain',
-        height: '500px'
-      }} />
+      <div className='container margin-5-t'>
+        <div className='relative' style={{
+          background: 'url(/images/macbook.svg) top center no-repeat',
+          backgroundSize: 'contain',
+          height: '383px'
+        }} />
+      </div>
       <div className='container margin-3-t children-margin-1x5-v'>
         <div>
           <h2>Навыки и технологии:</h2>
@@ -62,30 +66,21 @@ export function Index () {
           </ul>
         </div>
       </div>
-      <div className='container-wide margin-3-t children-margin-1x5-v align-center'>
-        <div className='children-margin-1-v'>
-          <div className='row-start-stretch children-margin-1-h'>
-            <ProjectItem />
-            <ProjectItem />
-            <ProjectItem />
-          </div>
-          <div className='row-start-stretch children-margin-1-h'>
-            <ProjectItem />
-            <ProjectItem />
-            <ProjectItem />
-          </div>
-        </div>
+      <div className='align-center margin-3-t children-margin-1x5-v'>
+        <h2>Our projects</h2>
+        <Carousel>
+          <CarouselItem pics={['tobox-0.png', 'tobox-1.png']}
+                        name='ToBox' href='//tobox.com/' />
+          <CarouselItem pics={['fiesta-0.jpg', 'fiesta-1.jpg']}
+                        name='Ford Fiesta' href='//fiesta.ford.ru/' />
+          <CarouselItem pics={['tpu-0.jpg', 'tpu-1.jpg']}
+                        name='TPU Shop' href='//shop.tpu.ru/' />
+          <CarouselItem pics={['ecosport-0.jpg']}
+                        name='Ford EcoSport' href='//ecosport.ford.ru/' />
+          <CarouselItem pics={['poi-0.jpg', 'poi-1.jpg']}
+                        name='Just POI' href='//prostopoi.ru/' />
+        </Carousel>
       </div>
     </div>
-  )
-}
-
-function ProjectItem () {
-  return (
-    <a href='#' className='col-between-stretch shadow-in-divider rounded overflow-hidden
-                           padding-0x5 children-margin-0x5-v color-text undecorated'>
-      <img src='/images/tobox.png' alt='' className='width-100p' />
-      <span className='font-3 align-center'>Tobox</span>
-    </a>
   )
 }

@@ -19,6 +19,9 @@ const src = {
     'src/styles/**/*.scss',
     'node_modules/stylebox/**/*.scss'
   ],
+  icons: 'src/icons/**/*.svg',
+  iconsCss: 'src/icon-templates/icons.css',
+  iconsHtml: 'src/icon-templates/icons.html',
   imagesRaster: 'src/images/**/*.{jpg,png}',
   imagesVector: 'src/images/**/*.svg'
 }
@@ -26,12 +29,15 @@ const src = {
 const out = {
   root: 'dist',
   styles: 'dist/styles',
+  icons: 'dist/fonts/iconfont',
   images: 'dist/images'
 }
 
 const autoprefixerSettings = {browsers: ['> 1%', 'IE >= 10', 'iOS 7']}
 
 const versionCmd = 'git rev-parse --short HEAD'
+
+const fontName = 'icons'
 
 function noop () {}
 
@@ -76,6 +82,51 @@ gulp.task('styles:build', () => (
 
 gulp.task('styles:watch', () => {
   $.watch(src.styleGlobs, gulp.series('styles:build'))
+})
+
+/**
+ * Icons
+ */
+
+gulp.task('icons:build', () => {
+  const iconsD = Promise.defer()
+  const cssD = Promise.defer()
+  const htmlD = Promise.defer()
+
+  gulp.src(src.icons)
+    .pipe($.iconfont({
+      fontName,
+      prependUnicode: false,
+      formats: ['ttf', 'eot', 'woff', 'svg', 'woff2'],
+      normalize: true
+    }))
+    .on('glyphs', glyphs => {
+      const imports = {glyphs, fontName, className: 'icon'}
+
+      gulp.src(src.iconsCss)
+        .pipe($.statil({imports}))
+        .pipe($.autoprefixer(autoprefixerSettings))
+        .pipe(gulp.dest(out.icons))
+        .on('error', cssD.reject)
+        .on('end', cssD.resolve)
+
+      gulp.src(src.iconsHtml)
+        .pipe($.statil({imports}))
+        .pipe(gulp.dest(out.icons))
+        .on('error', htmlD.reject)
+        .on('end', htmlD.resolve)
+    })
+    .pipe(gulp.dest(out.icons))
+    .on('error', iconsD.reject)
+    .on('end', iconsD.resolve)
+
+  return Promise.all([iconsD.promise, cssD.promise, htmlD.promise])
+})
+
+gulp.task('icons:watch', () => {
+  $.watch(src.icons, gulp.series('icons:build'))
+  $.watch(src.iconsCss, gulp.series('icons:build'))
+  $.watch(src.iconsHtml, gulp.series('icons:build'))
 })
 
 /**
@@ -129,12 +180,14 @@ gulp.task('devserver', () => {
 gulp.task('common-tasks', gulp.parallel(
   'html:build',
   'styles:build',
+  'icons:build',
   'images:build'
 ))
 
 gulp.task('watch', gulp.parallel(
   'html:watch',
   'styles:watch',
+  'icons:watch',
   'images:watch',
   'devserver'
 ))

@@ -6,9 +6,18 @@ body {
   @extend .bg-white;
 }
 
+:focus {
+  outline-color: $color-primary;
+}
+
+::selection {
+  background: $color-primary-light;
+}
+
 .bg-center  {@include bg-center;}
 .bg-cover   {@include bg-cover;}
 .bg-contain {@include bg-contain;}
+.bg-wide    {@include bg-wide;}
 
 // Note: this is incompatible with [aria-label] on the same element.
 .square::before {
@@ -64,4 +73,34 @@ body {
   @extend .font-2;
   @extend .align-center;
   @extend .undecorated;
+}
+
+.icon {
+  font-size: 1rem;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.slide-transition {
+  transition: all 0.3s ease-in;
+}
+
+.transition-all {
+  transition: all 0.2s ease-in;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.hover-opacity-0x9:hover {
+  opacity: 0.9;
+}
+
+.sm-hide {
+  @include respond-to('max-width', '1000px') {
+    display: none;
+  }
 }

@@ -1,6 +1,15 @@
-@mixin bg-center {
-  background-position: center center;
+@mixin bg-no-repeat {
   background-repeat: no-repeat;
+}
+
+@mixin bg-center {
+  @include bg-no-repeat;
+  background-position: center center;
+}
+
+@mixin bg-top-center {
+  @include bg-no-repeat;
+  background-position: top center;
 }
 
 @mixin bg-cover {
@@ -11,4 +20,9 @@
 @mixin bg-contain {
   @include bg-center;
   background-size: contain;
+}
+
+@mixin bg-wide {
+  @include bg-top-center;
+  background-size: 100% auto;
 }

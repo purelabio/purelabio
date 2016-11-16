@@ -1,16 +1,23 @@
+$min-width: 770px;
+
 html * {
   box-sizing: border-box;
   max-height: 99999rem;
 }
 
+body {
+  min-width: $min-width;
+}
+
 .container {
   @extend .padding-2x5-h;
-  width: 770px;
+  width: $min-width;
   margin-left: auto;
   margin-right: auto;
 }
 
 .container-wide {
+  min-width: $min-width;
   @extend .padding-2x5-h;
 }
 
