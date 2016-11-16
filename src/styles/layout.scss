@@ -21,6 +21,10 @@ body {
   @extend .padding-2x5-h;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
 ul, ol {
   @extend .padding-1x5-l;
 }
