@@ -23,7 +23,7 @@ export function Index () {
       <MacBook />
       <div className='container margin-3-t children-margin-1x5-v'>
         <div>
-          <h2>Навыки и технологии:</h2>
+          <h2>Skills and Technologies:</h2>
           <ul className='color-text-light'>
             <li>
               Frontend: React.js, Prax, Flux, ReFlux, Lodash, SCSS, Stylific,
@@ -44,19 +44,19 @@ export function Index () {
                backgroundImage: 'url(/images/react.svg)'
              }} />
         <div>
-          <h2>Мы делаем:</h2>
+          <h2>We do:</h2>
           <ul className='color-text-light'>
             <li>
-              Single page application — с применением самых
-              современных технологий и подходов;
+              Single page applications&nbsp;&mdash; using latest
+              technologies and approaches;
             </li>
             <li>
-              Continuous integration vs delivery – автоматическая сборка
-              и доставка на production;
+              Continuous integration and delivery&nbsp;&mdash; build
+              and deploy to&nbsp;production automatically;
             </li>
             <li>
-              Functional Programming – это позволяет нам
-              создавать сложные приложения без ошибок.
+              Functional programming&nbsp;&mdash; it&nbsp;lets&nbsp;us
+              create complex applications without defects.
             </li>
           </ul>
         </div>
