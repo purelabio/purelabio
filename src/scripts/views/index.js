@@ -20,26 +20,21 @@ export function Index () {
           <button className='button-primary rounded-r'>Go!</button>
         </form>
       </div>
-      <div className='container margin-5-t'>
-        <div className='relative' style={{
-          background: 'url(/images/macbook.svg) top center no-repeat',
-          backgroundSize: 'contain',
-          height: '383px'
-        }} />
-      </div>
+      <MacBook />
       <div className='container margin-3-t children-margin-1x5-v'>
         <div>
           <h2>Навыки и технологии:</h2>
           <ul className='color-text-light'>
             <li>
-              Front: React, git, ES2015, FP/FRP, SCSS,
-              (Re)Flux/Redux, Unix/Linux, English (fluent);
+              Frontend: React.js, Prax, Flux, ReFlux, Lodash, SCSS, Stylific,
+              Stylebox, Jade, Stylus, Yandex BEM, jQuery, Gulp, Webpack, Git, Jenkins.
+            </li>
+            <li>
+              Backend: Node, Ruby, Java, Clojure, Spring Framework,
+              Hibernate ORM, JavaEE (Glassfish, Weblogic), Servlets, Cassandra.
             </li>
             <li>
               Mobile: Android;
-            </li>
-            <li>
-              Backend: Ruby on Rails.
             </li>
           </ul>
         </div>
@@ -80,6 +75,27 @@ export function Index () {
           <CarouselItem pics={['poi-0.jpg', 'poi-1.jpg']}
                         name='Just POI' href='//prostopoi.ru/' />
         </Carousel>
+      </div>
+    </div>
+  )
+}
+
+function MacBook () {
+  return (
+    <div className='relative container margin-5-t'>
+      <div style={{
+        background: 'url(/images/macbook.svg) top center no-repeat',
+        backgroundSize: 'contain',
+        height: '383px'
+      }} />
+      <div className='abs-t translate-x-50p bg-top-center' style={{
+        top: '40px',
+        right: '50%',
+        width: '494px',
+        height: '289px',
+        backgroundImage: 'url(/images/projects/tobox-0.png)'
+      }}>
+
       </div>
     </div>
   )
