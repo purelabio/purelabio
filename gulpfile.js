@@ -12,6 +12,7 @@ const {execSync, fork} = require('child_process')
 const src = {
   root: 'src',
   html: 'src/html/**/*',
+  dist: 'dist/**/*',
   styleEntryFiles: [
     'src/styles/main.scss'
   ],
@@ -172,6 +173,15 @@ gulp.task('devserver', () => {
   restart()
   $.watch(['./webpack.config.js', './devserver.js'], restart)
 })
+
+/**
+ * Deploy
+ */
+
+gulp.task('deploy', () => (
+  gulp.src(src.dist)
+    .pipe($.ghPages())
+))
 
 /**
  * Default
