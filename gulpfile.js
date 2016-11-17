@@ -5,7 +5,10 @@
 const $ = require('gulp-load-plugins')()
 const del = require('del')
 const gulp = require('gulp')
+const webpack = require('webpack')
 const {execSync, fork} = require('child_process')
+
+const webpackConfig = require('./webpack.config')
 
 /* ******************************** Globals ******************************** */
 
@@ -42,6 +45,8 @@ const fontName = 'icons'
 
 function noop () {}
 
+const Err = (key, msg) => new $.util.PluginError(key, msg, {showProperties: false})
+
 /* ********************************* Tasks ********************************* */
 
 /**
@@ -68,6 +73,19 @@ gulp.task('html:build', () => {
 
 gulp.task('html:watch', () => {
   $.watch(src.html, gulp.series('html:build'))
+})
+
+/**
+ * Scripts
+ */
+
+gulp.task('scripts:build', done => {
+  webpack(webpackConfig, (err, stats) => {
+    if (err) throw Err('webpack', err)
+    $.util.log('[webpack]', stats.toString(webpackConfig.stats))
+    if (stats.hasErrors()) throw Err('webpack', 'plugin error')
+    done()
+  })
 })
 
 /**
@@ -178,9 +196,14 @@ gulp.task('devserver', () => {
  * Deploy
  */
 
-gulp.task('deploy', () => (
+gulp.task('gh-pages', () => (
   gulp.src(src.dist)
     .pipe($.ghPages())
+))
+
+gulp.task('deploy', gulp.series(
+  'scripts:build',
+  'gh-pages'
 ))
 
 /**
