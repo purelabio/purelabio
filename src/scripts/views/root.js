@@ -1,4 +1,5 @@
 import {Link} from 'react-router'
+import {bindPopup} from '../utils/utils'
 import {Popup} from './popup'
 
 export function Root ({children}) {
@@ -11,7 +12,7 @@ export function Root ({children}) {
   )
 }
 
-function Header () {
+function Header (__, {env}) {
   return (
     <header className='row-between-center container-wide padding-1-v'>
       <div className='row-start-center children-undecorated children-margin-3-h
@@ -21,7 +22,9 @@ function Header () {
         <a href='#portfolio'>Portfolio</a>
         <a href='#contacts'>Contacts</a>
       </div>
-      <button className='button-primary'>Go!</button>
+      <button className='button-primary' {...bindPopup(env, 'form', true)}>
+        Write us
+      </button>
     </header>
   )
 }

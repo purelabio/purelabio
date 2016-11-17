@@ -1,3 +1,4 @@
+import {bindValue, bindPopup} from '../utils/utils'
 import {Carousel, CarouselItem} from './carousel'
 
 export function Index () {
@@ -13,15 +14,11 @@ export function Index () {
           who work in&nbsp;close partnership with our customers create
           great products for web and mobile.
         </p>
-        <div className='row-center-stretch margin-3-t'>
-          <input type='email'
-                 placeholder='Enter your email'
-                 className='input width-24 shadow-in-divider rounded-l' />
-          <button className='button-primary rounded-r'>Go!</button>
-        </div>
+        <Form />
       </div>
       <MacBook />
       <Skills />
+      <Form />
       <Projects />
       <Contacts />
     </div>
@@ -149,6 +146,21 @@ function Contacts () {
           </a>
         </div>
       </div>
+    </div>
+  )
+}
+
+function Form (__, {read, env}) {
+  return (
+    <div className='row-center-stretch margin-3-t'>
+      <input type='email'
+             placeholder='Enter your email'
+             className='input width-24 shadow-in-divider rounded-l'
+             {...bindValue(read, env, ['email'])} />
+      <button className='button-primary rounded-r'
+              {...bindPopup(env, 'form', true)}>
+        Write us
+      </button>
     </div>
   )
 }

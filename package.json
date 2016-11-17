@@ -37,6 +37,7 @@
     "gulp-util": "3.0.7",
     "gulp-watch": "4.3.10",
     "lodash": "4.17.2",
+    "prax": "0.0.84",
     "react": "15.3.2",
     "react-dom": "15.3.2",
     "react-router": "3.0.0",
