@@ -15,7 +15,10 @@ const webpackConfig = require('./webpack.config')
 const src = {
   root: 'src',
   html: 'src/html/**/*',
-  dist: 'dist/**/*',
+  dist: [
+    'dist/**/*',
+    'CNAME'
+  ],
   styleEntryFiles: [
     'src/styles/main.scss'
   ],
