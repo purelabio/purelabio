@@ -1,10 +1,12 @@
 import {Link} from 'react-router'
+import {Popup} from './popup'
 
 export function Root ({children}) {
   return (
     <div>
       <Header />
       {children}
+      <Popup />
     </div>
   )
 }
