@@ -1,4 +1,4 @@
-import {bindPopup, bindValue} from '../utils/utils'
+import {bindPopup, bindValue} from '../utils'
 
 export function Popup (__, {read, env}) {
   const popup = ['popups', 'form']

@@ -1,4 +1,4 @@
-import {render, unmountComponentAtNode} from 'react-dom'
+const {render, unmountComponentAtNode} = require('react-dom')
 
 if (module.hot) {
   module.hot.accept(err => {
@@ -6,35 +6,40 @@ if (module.hot) {
   })
   module.hot.dispose(() => {
     console.clear()
-    unmountComponentAtNode(document.getElementById('root'))
+    teardownRender()
+    if (typeof featureTeardown === 'function') featureTeardown()
   })
 }
+
+/**
+ * Setup
+ */
 
 const {delayingWatch} = require('prax')
 const {reactiveCreateClass, cachingTransformType, createCreateElement,
        renderingWatch} = require('prax/react')
 const {routes} = require('./routes')
+const {env, featureSetup} = require('./core')
 
-export function init (env) {
-  const createClass = reactiveCreateClass(React.createClass, env)
-  const transformType = cachingTransformType(createClass)
-  React.createElement = createCreateElement(transformType)
+const createClass = reactiveCreateClass(React.createClass, env)
+const transformType = cachingTransformType(createClass)
+React.createElement = createCreateElement(transformType)
 
-  function renderRoot () {
-    if (findRoot()) {
-      render(routes, findRoot())
-    }
-  }
-
-  env.addWatch('render', delayingWatch(renderingWatch(renderRoot)))
-
-  // `renderRoot` must be qued to avoid accidental overlap with `renderingWatch`.
-  env.enque(renderRoot)
+function renderRoot () {
+  if (findRoot()) render(routes, findRoot())
 }
 
-const {env} = require('./core')
+function teardownRender () {
+  if (findRoot()) unmountComponentAtNode(findRoot())
+  if (typeof env !== 'undefined') env.removeWatch('render')
+}
 
-init(env)
+env.addWatch('render', delayingWatch(renderingWatch(renderRoot)))
+
+// `renderRoot` must be qued to avoid accidental overlap with `renderingWatch`.
+env.enque(renderRoot)
+
+const featureTeardown = featureSetup(env)
 
 /**
  * Utils

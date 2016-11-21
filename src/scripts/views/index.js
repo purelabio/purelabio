@@ -1,4 +1,4 @@
-import {bindValue, bindPopup} from '../utils/utils'
+import {bindValue, bindPopup} from '../utils'
 import {Carousel, CarouselItem} from './carousel'
 
 export function Index () {
@@ -49,7 +49,7 @@ function MacBook () {
 function Skills () {
   return (
     <div>
-      <a name='whoweare' />
+      <a id='whoweare' />
       <div className='container children-margin-1x5-v'>
         <div>
           <h2>Skills and Technologies:</h2>
@@ -97,20 +97,20 @@ function Skills () {
 function Projects () {
   return (
     <div>
-      <a name='portfolio' />
+      <a id='portfolio' />
       <div className='align-center children-margin-1x5-v'>
         <h2>Our projects</h2>
         <Carousel>
           <CarouselItem pics={['tobox-0.png', 'tobox-1.png']}
-                        name='ToBox' href='//tobox.com/' />
+                        id='ToBox' href='//tobox.com/' />
           <CarouselItem pics={['fiesta-0.jpg', 'fiesta-1.jpg']}
-                        name='Ford Fiesta' href='//fiesta.ford.ru/' />
+                        id='Ford Fiesta' href='//fiesta.ford.ru/' />
           <CarouselItem pics={['tpu-0.jpg', 'tpu-1.jpg']}
-                        name='TPU Shop' href='//shop.tpu.ru/' />
+                        id='TPU Shop' href='//shop.tpu.ru/' />
           <CarouselItem pics={['ecosport-0.jpg']}
-                        name='Ford EcoSport' href='//ecosport.ford.ru/' />
+                        id='Ford EcoSport' href='//ecosport.ford.ru/' />
           <CarouselItem pics={['poi-0.jpg', 'poi-1.jpg']}
-                        name='Just POI' href='//prostopoi.ru/' />
+                        id='Just POI' href='//prostopoi.ru/' />
         </Carousel>
       </div>
     </div>
@@ -120,7 +120,7 @@ function Projects () {
 function Contacts () {
   return (
     <div>
-      <a name='contacts' />
+      <a id='contacts' />
       <div className='container col-start-center children-margin-1x5-v'>
         <h2>Contacts</h2>
         <div className='col-start-stretch children-undecorated children-margin-0x5-v'>
@@ -159,7 +159,7 @@ function Form (__, {read, env}) {
              {...bindValue(read, env, ['email'])} />
       <button className='button-primary rounded-r'
               {...bindPopup(env, 'form', true)}>
-        Write us
+        Contact us
       </button>
     </div>
   )

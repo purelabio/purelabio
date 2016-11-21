@@ -21,7 +21,7 @@ bs.init({
       require('connect-history-api-fallback')()
     ]
   },
-  port: 8080,
+  port: 23467,
   files: 'dist',
   open: false,
   online: false,
