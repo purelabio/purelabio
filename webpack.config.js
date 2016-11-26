@@ -3,6 +3,7 @@
 const pt = require('path')
 const webpack = require('webpack')
 const realpathSync = require('fs').realpathSync
+const prod = process.env.NODE_ENV === 'production'
 
 module.exports = {
   entry: {
@@ -22,8 +23,16 @@ module.exports = {
         include: [
           realpathSync('src/scripts')
         ]
-      }
-    ]
+      },
+      ...(prod ? [
+        // disable dev features and warnings in React and react-router
+        {
+          test: /react.*\.jsx?$/,
+          include: /node_modules/,
+          loader: 'transform?envify'
+        }
+      ] : [])
+    ],
   },
 
   resolveLoader: {
@@ -35,9 +44,16 @@ module.exports = {
       _: 'lodash',
       React: 'react'
     }),
-    new webpack.HotModuleReplacementPlugin()
+    ...(prod ? [
+      new webpack.optimize.UglifyJsPlugin({
+        minimize: true,
+        compress: {warnings: false, screw_ie8: true},
+        mangle: true
+      }),
+    ] : [
+      new webpack.HotModuleReplacementPlugin(),
+    ]),
   ],
-
 
   stats: {
     colors: true,

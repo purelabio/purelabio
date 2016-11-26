@@ -3,8 +3,10 @@
 const bs = require('browser-sync').create()
 const mapValues = require('lodash/mapValues')
 
+const prod = process.env.NODE_ENV === 'production'
+
 const config = require('./webpack.config')
-const compiler = require('webpack')(extend(config, {
+const compiler = require('webpack')(prod ? config : extend(config, {
   entry: mapValues(config.entry, x => ['webpack-hot-middleware/client', x])
 }))
 
@@ -15,10 +17,12 @@ bs.init({
     middleware: [
       require('webpack-dev-middleware')(compiler, {
         publicPath: '/',
-        noInfo: true
+        stats: config.stats,
       }),
-      require('webpack-hot-middleware')(compiler),
-      require('connect-history-api-fallback')()
+      ...(prod ? [] : [
+        require('webpack-hot-middleware')(compiler),
+      ]),
+      require('connect-history-api-fallback')(),
     ]
   },
   port: 23467,
