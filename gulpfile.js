@@ -196,20 +196,6 @@ gulp.task('devserver', () => {
 })
 
 /**
- * Deploy
- */
-
-gulp.task('gh-pages', () => (
-  gulp.src(src.dist)
-    .pipe($.ghPages())
-))
-
-gulp.task('deploy', gulp.series(
-  'scripts:build',
-  'gh-pages'
-))
-
-/**
  * Default
  */
 
@@ -226,6 +212,20 @@ gulp.task('watch', gulp.parallel(
   'icons:watch',
   'images:watch',
   'devserver'
+))
+
+/**
+ * Deploy
+ */
+
+gulp.task('gh-pages', () => (
+  gulp.src(src.dist)
+    .pipe($.ghPages())
+))
+
+gulp.task('deploy', gulp.series(
+  gulp.parallel('common-tasks', 'scripts:build'),
+  'gh-pages'
 ))
 
 gulp.task('default', gulp.series('clear', gulp.parallel('common-tasks', 'watch')))
