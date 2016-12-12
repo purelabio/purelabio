@@ -25,3 +25,7 @@ export function addEvent (target, eventName, fun, useCapture = false) {
     target.removeEventListener(eventName, fun, useCapture)
   }
 }
+
+export function preventDefault (event) {
+  event.preventDefault()
+}
