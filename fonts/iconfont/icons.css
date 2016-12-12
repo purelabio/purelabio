@@ -48,11 +48,15 @@ span[class*=' icon-'] {
   content: "\EA03"
 }
 
-.icon-email::before {
+.icon-cross::before {
   content: "\EA04"
 }
 
-.icon-skype::before {
+.icon-email::before {
   content: "\EA05"
+}
+
+.icon-skype::before {
+  content: "\EA06"
 }
 
