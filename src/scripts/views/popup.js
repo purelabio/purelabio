@@ -1,63 +1,81 @@
-import {seq, bind, putIn} from 'prax'
+import {seq, bind, putIn, pipe, alter} from 'prax'
 import {Xhr} from 'xhttp'
 import {bindPopup, bindValue, preventDefault} from '../utils'
 
-const email   = ['form', 'email']
-const name    = ['form', 'name']
-const message = ['form', 'message']
+const emailPath        = ['form', 'email']
+const namePath         = ['form', 'name']
+const messagePath      = ['form', 'message']
+const popupPath        = ['popups', 'form']
+const xhrPath          = ['formXhr']
+const xhrMessagePath   = ['xhr', 'message']
+const xhrErrorPath     = ['xhr', 'error']
 
 export function Popup (__, {read, env}) {
-  const popup = ['popups', 'form']
-  const visible = read(...popup)
+  const visible = read(...popupPath)
+  const syncing = !!read(...xhrPath)
+  const message = read(...xhrMessagePath)
 
   if (!visible) return null
 
   return (
     <div className='fix-t-l fix-b-r col-center-center bg-primary-dark'>
+      {message ?
+      <div className='relative width-24 col-start-stretch children-margin-1-v'>
+        <span className='color-white align-center font-4'>{message}</span>
+        <CloseButton />
+      </div> :
       <form className='relative width-24 col-start-stretch children-margin-1-v'
             onSubmit={seq(preventDefault, bind(request, read, env))}>
-        <input className='input' type='email' placeholder='Email' name='email' required
-               {...bindValue(read, env, email)} />
-        <input className='input' type='text' placeholder='Name' name='name' required
-               {...bindValue(read, env, name)} />
-        <textarea className='input' placeholder='Message' name='message' required
+        <input className='input' type='email' placeholder='Email' name='email' readOnly={syncing} required
+               {...bindValue(read, env, emailPath)} />
+        <input className='input' type='text' placeholder='Name' name='name' readOnly={syncing} required
+               {...bindValue(read, env, namePath)} />
+        <textarea className='input' placeholder='Message' name='message' readOnly={syncing} required
                   style={{resize: 'none'}} rows='3'
-                  {...bindValue(read, env, message)} />
-        <input className='button-primary' type='submit' value='Send' />
-        <span className='color-white align-center font-4'>
-          {read('xhr', 'message')}
-        </span>
+                  {...bindValue(read, env, messagePath)} />
+        <button type='submit' className='button-primary' disabled={syncing}>Send</button>
         <span className='color-accent align-center font-2'>
-          {read('xhr', 'error')}
+          {read(...xhrErrorPath)}
         </span>
-        <span className='icon icon-cross color-white abs pointer'
-              style={{bottom: '100%', left: '100%', margin: '2rem'}}
-              {...bindPopup(env, 'form', null)} />
-      </form>
+        <CloseButton />
+      </form>}
     </div>
+  )
+}
+
+function CloseButton (__, {env}) {
+  return (
+    <span className='icon icon-cross color-white abs pointer'
+          style={{bottom: '100%', left: '100%', margin: '2rem'}}
+          {...bindPopup(env, 'form', null)} />
   )
 }
 
 function request (read, env) {
   const okMessage = 'Thank you! We will contact you as soon as possible.'
-  Xhr({
-    url: 'https://formspree.io/yury.egorenkov@gmail.com',
-    method: 'post',
-    headers: {
-      accept: 'application/json',
-      'content-type': 'application/json;charset=UTF-8',
+
+  env.swap(pipe(
+    alter(putIn, xhrMessagePath, null),
+    alter(putIn, xhrErrorPath, null),
+    alter(putIn, xhrPath, Xhr({
+      url: 'https://formspree.io/yury.egorenkov@gmail.com',
+      method: 'post',
+      headers: {
+        accept: 'application/json',
+        'content-type': 'application/json;charset=UTF-8',
+      },
+      body: {
+        email: read(...emailPath),
+        name: read(...namePath),
+        message: read(...messagePath)
+      }
     },
-    body: {
-      email: read(...email),
-      name: read(...name),
-      message: read(...message)
-    }
-  },
-  ({ok, status}) => {
-    if (ok) {
-      env.swap(putIn, ['xhr', 'message'], okMessage)
-    } else {
-      env.swap(putIn, ['xhr', 'error'], status)
-    }
-  })
+    ({ok, status, body: {error}}) => {
+      env.swap(pipe(
+        alter(putIn, xhrPath, null),
+        alter(putIn, xhrMessagePath, ok ? okMessage : null),
+        alter(putIn, xhrErrorPath, ok ? null : error || `Unexpected error (status ${status})`),
+      ))
+    }))
+  ))
 }
