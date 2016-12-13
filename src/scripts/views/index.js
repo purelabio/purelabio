@@ -10,9 +10,9 @@ export function Index () {
           that your users will love
         </h1>
         <p className='color-text-light'>
-          We&nbsp;are the consulting company of&nbsp;developers and designers,
-          who work in&nbsp;close partnership with our customers create
-          great products for web and mobile.
+          We&nbsp;are a consulting company of&nbsp;developers and designers,
+          creating great products for web and mobile
+          in&nbsp;close partnership with our customers
         </p>
         <Form />
       </div>

@@ -196,10 +196,19 @@ gulp.task('devserver', () => {
 })
 
 /**
+ * Deploy
+ */
+
+gulp.task('gh-pages', () => (
+  gulp.src(src.dist)
+    .pipe($.ghPages())
+))
+
+/**
  * Default
  */
 
-gulp.task('common-tasks', gulp.parallel(
+gulp.task('buildup', gulp.parallel(
   'html:build',
   'styles:build',
   'icons:build',
@@ -214,18 +223,8 @@ gulp.task('watch', gulp.parallel(
   'devserver'
 ))
 
-/**
- * Deploy
- */
+gulp.task('build', gulp.series('clear', gulp.parallel('buildup', 'scripts:build')))
 
-gulp.task('gh-pages', () => (
-  gulp.src(src.dist)
-    .pipe($.ghPages())
-))
+gulp.task('default', gulp.series('clear', gulp.parallel('buildup', 'watch')))
 
-gulp.task('deploy', gulp.series(
-  gulp.parallel('common-tasks', 'scripts:build'),
-  'gh-pages'
-))
-
-gulp.task('default', gulp.series('clear', gulp.parallel('common-tasks', 'watch')))
+gulp.task('deploy', gulp.series('build', 'gh-pages'))
