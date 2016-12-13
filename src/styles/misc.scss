@@ -1,8 +1,4 @@
-html {
-  @extend .bg-divider;
-}
-
-body {
+html, body {
   @extend .bg-white;
 }
 
