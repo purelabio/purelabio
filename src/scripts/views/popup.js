@@ -41,7 +41,7 @@ export function Popup (__, {read, env}) {
 function request (read, env) {
   const okMessage = 'Thank you! We will contact you as soon as possible.'
   Xhr({
-    url: 'https://formspree.io/hello.voodoo@gmail.com',
+    url: 'https://formspree.io/yury.egorenkov@gmail.com',
     method: 'post',
     headers: {
       accept: 'application/json',
