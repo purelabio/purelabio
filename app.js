@@ -63,7 +63,7 @@
 /******/ 	}
 
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "dd67c51bdb6c622c6604"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b896ff641bc5d771241f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 
@@ -29743,7 +29743,7 @@
 	function request(read, env) {
 	  var okMessage = 'Thank you! We will contact you as soon as possible.';
 	  (0, _xhttp.Xhr)({
-	    url: 'https://formspree.io/hello.voodoo@gmail.com',
+	    url: 'https://formspree.io/yury.egorenkov@gmail.com',
 	    method: 'post',
 	    headers: {
 	      accept: 'application/json',
