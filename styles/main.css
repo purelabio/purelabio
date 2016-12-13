@@ -1727,7 +1727,7 @@
 .color-links-hover-divider a:hover {
   color: #BDBDBD; }
 
-.bg-divider, html,
+.bg-divider,
 .bg-hover-divider:hover {
   background-color: #BDBDBD; }
 
@@ -1747,7 +1747,7 @@
 .color-links-hover-white a:hover {
   color: #ffffff; }
 
-.bg-white, body,
+.bg-white, html, body,
 .bg-hover-white:hover {
   background-color: #ffffff; }
 
