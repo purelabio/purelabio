@@ -156,7 +156,7 @@ function Form (__, {read, env}) {
       <input type='email'
              placeholder='Enter your email'
              className='input width-24 shadow-in-divider rounded-l'
-             {...bindValue(read, env, ['email'])} />
+             {...bindValue(read, env, ['form', 'email'])} />
       <button className='button-primary rounded-r'
               {...bindPopup(env, 'form', true)}>
         Contact us

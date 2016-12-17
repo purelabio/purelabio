@@ -26,6 +26,7 @@ export function Popup (__, {read, env}) {
       </div> :
       <form className='relative width-24 col-start-stretch children-margin-1-v'
             onSubmit={seq(preventDefault, bind(request, read, env))}>
+        <label className='color-white align-center'>Contact us!</label>
         <input className='input' type='email' placeholder='Email' name='email' readOnly={syncing} required
                {...bindValue(read, env, emailPath)} />
         <input className='input' type='text' placeholder='Name' name='name' readOnly={syncing} required
