@@ -1,5 +1,6 @@
+import {bind} from 'prax'
+import {togglePopup} from '../utils'
 import {Link} from 'react-router'
-import {bindPopup} from '../utils'
 import {Popup} from './popup'
 
 export function Root ({children}) {
@@ -22,7 +23,7 @@ function Header (__, {env}) {
         <a href='#portfolio'>Portfolio</a>
         <a href='#contacts'>Contacts</a>
       </div>
-      <button className='button-primary' {...bindPopup(env, 'form', true)}>
+      <button className='button-primary' onClick={bind(env.swap, togglePopup, 'form')}>
         Contact us
       </button>
     </header>

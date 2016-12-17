@@ -1,4 +1,5 @@
-import {bindValue, bindPopup} from '../utils'
+import {bind, pipe} from 'prax'
+import {bindValue, togglePopup, preventDefault} from '../utils'
 import {Carousel, CarouselItem} from './carousel'
 
 export function Index () {
@@ -152,15 +153,15 @@ function Contacts () {
 
 function Form (__, {read, env}) {
   return (
-    <div className='row-center-stretch margin-3-t'>
+    <form className='row-center-stretch margin-3-t'
+          onSubmit={pipe(preventDefault, bind(env.swap, togglePopup, 'form'))}>
       <input type='email'
              placeholder='Enter your email'
              className='input width-24 shadow-in-divider rounded-l'
              {...bindValue(read, env, ['form', 'email'])} />
-      <button className='button-primary rounded-r'
-              {...bindPopup(env, 'form', true)}>
+      <button className='button-primary rounded-r'>
         Contact us
       </button>
-    </div>
+    </form>
   )
 }

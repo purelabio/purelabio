@@ -1,6 +1,6 @@
 import {seq, bind, putIn, pipe, alter} from 'prax'
 import {Xhr} from 'xhttp'
-import {bindPopup, bindValue, preventDefault} from '../utils'
+import {togglePopup, bindValue, preventDefault} from '../utils'
 
 const emailPath        = ['form', 'email']
 const namePath         = ['form', 'name']
@@ -48,7 +48,7 @@ function CloseButton (__, {env}) {
   return (
     <span className='icon icon-cross color-white abs pointer'
           style={{bottom: '100%', left: '100%', margin: '2rem'}}
-          {...bindPopup(env, 'form', null)} />
+          onClick={bind(env.swap, togglePopup, 'form')} />
   )
 }
 

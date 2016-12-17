@@ -1,9 +1,7 @@
-import {putIn, isBoolean, isFunction, validate} from 'prax'
+import {putIn, putInBy, negate, isBoolean, isFunction, validate} from 'prax'
 
-export function bindPopup (env, name, visible) {
-  return {
-    onClick: () => {env.swap(putIn, ['popups', name], visible)}
-  }
+export function togglePopup (state, name) {
+  return putInBy(state, ['popups', name], negate)
 }
 
 export function bindValue (read, env, path) {
