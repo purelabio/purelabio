@@ -56,15 +56,14 @@ function Skills () {
           <h2>Skills and Technologies:</h2>
           <ul className='color-text-light'>
             <li>
-              Frontend: React.js, Prax, Flux, ReFlux, Lodash, SCSS, Stylific,
-              Stylebox, Jade, Stylus, Yandex BEM, jQuery, Gulp, Webpack, Git, Jenkins.
+              Frontend: ES2015-2017, React, Prax, Flux, D3.js, SCSS, Stylebox, Gulp, Webpack;
             </li>
             <li>
-              Backend: Node, Ruby, Java, Clojure, Spring Framework,
-              Hibernate ORM, JavaEE (Glassfish, Weblogic), Servlets, Cassandra.
+              Backend: Firebase, Node, Ruby, Clojure, Python, Go, Java,
+              Spring Framework, Hibernate ORM, JavaEE (Glassfish, Weblogic), Servlets, Cassandra;
             </li>
             <li>
-              Mobile: Android;
+              Mobile: Android, iOS.
             </li>
           </ul>
         </div>
@@ -86,7 +85,11 @@ function Skills () {
             </li>
             <li>
               Functional programming&nbsp;&mdash; it&nbsp;lets&nbsp;us
-              create complex applications without defects.
+              create complex applications without defects;
+            </li>
+            <li>
+              Reactive programming&nbsp;&mdash; for highly dynamic applications
+              that update in realtime.
             </li>
           </ul>
         </div>
