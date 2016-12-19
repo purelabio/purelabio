@@ -15,9 +15,9 @@ if (module.hot) {
  * Setup
  */
 
-const {delayingWatch} = require('prax')
+const {seq, delayingWatcher} = require('prax')
 const {reactiveCreateClass, cachingTransformType, createCreateElement,
-       renderingWatch} = require('prax/react')
+       renderingWatcher} = require('prax/react')
 const {routes} = require('./routes')
 const {env, featureSetup} = require('./core')
 
@@ -31,12 +31,11 @@ function renderRoot () {
 
 function teardownRender () {
   if (findRoot()) unmountComponentAtNode(findRoot())
-  if (typeof env !== 'undefined') env.removeWatch('render')
 }
 
-env.addWatch('render', delayingWatch(renderingWatch(renderRoot)))
+env.addWatcher(delayingWatcher(seq(renderingWatcher, renderRoot)))
 
-// `renderRoot` must be qued to avoid accidental overlap with `renderingWatch`.
+// `renderRoot` must be qued to avoid accidental overlap with `renderingWatcher`.
 env.enque(renderRoot)
 
 const featureTeardown = featureSetup(env)
