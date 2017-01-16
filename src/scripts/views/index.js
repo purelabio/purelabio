@@ -133,10 +133,10 @@ function Contacts () {
             <span className='icon icon-skype color-primary' />
             <span>yury.egorenkov</span>
           </a>
-          <a href='mailto:yury.egorenkov@gmail.com'
+          <a href='mailto:info@purelab.io'
              className='row-start-center children-margin-1-h'>
             <span className='icon icon-email color-primary' />
-            <span>yury.egorenkov@gmail.com</span>
+            <span>info@purelab.io</span>
           </a>
           <a href='tel:79169003777'
              className='row-start-center children-margin-1-h'>

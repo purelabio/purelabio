@@ -59,7 +59,7 @@ function request (read, env) {
     alter(putIn, xhrMessagePath, null),
     alter(putIn, xhrErrorPath, null),
     alter(putIn, xhrPath, Xhr({
-      url: 'https://formspree.io/yury.egorenkov@gmail.com',
+      url: 'https://formspree.io/info@purelab.io',
       method: 'post',
       headers: {
         accept: 'application/json',
