@@ -53,20 +53,59 @@ function Skills () {
       <a id='whoweare' />
       <div className='container children-margin-1x5-v'>
         <div>
-          <h2>Skills and Technologies:</h2>
+          <h2>Preferred Skills and Technologies:</h2>
           <ul className='color-text-light'>
             <li>
-              Frontend: ES2015-2017, React, Prax, Flux, D3.js, SCSS, Stylebox, Gulp, Webpack;
+              Frontend: ES2015-2017, React, Prax, Flux, D3.js, SCSS, Stylebox, Gulp, Webpack, ClojureScript;
             </li>
             <li>
-              Backend: Firebase, Node, Ruby, Clojure, Python, Go, Java,
-              Spring Framework, Hibernate ORM, JavaEE (Glassfish, Weblogic), Servlets, Cassandra;
+              Backend: Node, Clojure, Erlang, Haskell;
             </li>
             <li>
-              Mobile: Android, iOS.
+              Databases: Firebase, Datomic.
             </li>
           </ul>
         </div>
+        <div>
+          <h2>Secondary Skills and Technologies:</h2>
+          <ul className='color-text-light'>
+            <li>
+              Mobile: Android, iOS;
+            </li>
+            <li>
+              Backend: Ruby, Python, Go, Java,
+              Spring Framework, Hibernate ORM, JavaEE (Glassfish, Weblogic), Servlets;
+            </li>
+            <li>
+              Databases: Postgres, Cassandra.
+            </li>
+          </ul>
+        </div>
+        {void (
+        <div>
+          <h2>Preferred Projects:</h2>
+          <ul className='color-text-light'>
+            <li>
+              Web Single Page Applications
+              <ul>
+                <li>
+                  For us, web single page applications are the most preferable type
+                  of project because we have lots of experience and a toolkit for
+                  building them.
+                </li>
+              </ul>
+            </li>
+            <li>
+              Machine Learning and AI
+              <ul>
+                <li>
+                  We see this as a very promising technology, and are looking
+                  for
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>)}
         <div className='bg-contain'
              style={{
                height: '5rem',
@@ -92,6 +131,13 @@ function Skills () {
               that update in realtime.
             </li>
           </ul>
+        </div>
+        <div>
+          <p className='color-text-light'>
+            We see machine learning as a promising technology that may obsolete
+            older technologies and languages. We're looking for an opportunity
+            to get involved with ML and AI.
+          </p>
         </div>
       </div>
     </div>
