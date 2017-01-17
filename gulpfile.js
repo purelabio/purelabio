@@ -50,6 +50,8 @@ function noop () {}
 
 const Err = (key, msg) => new $.util.PluginError(key, msg, {showProperties: false})
 
+const prod = process.env.NODE_ENV === 'production'
+
 /* ********************************* Tasks ********************************* */
 
 /**
@@ -68,9 +70,7 @@ gulp.task('html:build', () => {
   const version = execSync(versionCmd).toString().replace(/\n/, '')
 
   return gulp.src(src.html)
-    .pipe($.statil({
-      imports: {version}
-    }))
+    .pipe($.statil({imports: {version, prod}}))
     .pipe(gulp.dest(out.root))
 })
 

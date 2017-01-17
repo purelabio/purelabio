@@ -22,8 +22,13 @@
 
   <meta name="robots" content="noindex, nofollow" />
 </head>
+
 <body>
   <div id="root"></div>
+
+  <script>
+    window.devMode = {{String(!Boolean(prod))}}
+  </script>
 
   <script src="app.js?{{version}}"></script>
 </body>

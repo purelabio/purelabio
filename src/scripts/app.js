@@ -31,9 +31,10 @@ function renderRoot () {
 
 function teardownRender () {
   if (findRoot()) unmountComponentAtNode(findRoot())
+  if (typeof removeRenderWatcher === 'function') removeRenderWatcher()
 }
 
-env.addWatcher(delayingWatcher(seq(renderingWatcher, renderRoot)))
+const removeRenderWatcher = env.addWatcher(delayingWatcher(seq(renderingWatcher, renderRoot)))
 
 // `renderRoot` must be qued to avoid accidental overlap with `renderingWatcher`.
 env.enque(renderRoot)
@@ -46,4 +47,17 @@ const featureTeardown = featureSetup(env)
 
 function findRoot () {
   return document.getElementById('root')
+}
+
+/**
+ * Debug
+ */
+
+if (window.devMode) {
+  ['log', 'info', 'warn', 'error', 'clear'].forEach(key => {
+    if (!/bound/.test(console[key].name)) {
+      window[key] = console[key] = console[key].bind(console)
+    }
+  })
+  _.assign(window, window.app)
 }
