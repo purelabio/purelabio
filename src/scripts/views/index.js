@@ -39,7 +39,7 @@ function MacBook () {
         right: '50%',
         width: '494px',
         height: '289px',
-        backgroundImage: 'url(/images/projects/tobox-0.png)'
+        backgroundImage: 'url(/images/projects/tobox-0.jpg)'
       }}>
 
       </div>
