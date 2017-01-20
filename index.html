@@ -9,8 +9,8 @@
   <meta name="fragment" content="!">
 
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic&subset=latin,cyrillic" rel="stylesheet">
-  <link rel="stylesheet" href="fonts/iconfont/icons.css?aa5aae1">
-  <link rel="stylesheet" href="styles/main.css?aa5aae1">
+  <link rel="stylesheet" href="fonts/iconfont/icons.css?d53040e">
+  <link rel="stylesheet" href="styles/main.css?d53040e">
   <link rel="icon" href="data:;base64,=">
 
   <!-- Prevent index.html caching -->
@@ -22,9 +22,54 @@
 
   <meta name="robots" content="noindex, nofollow" />
 </head>
+
 <body>
   <div id="root"></div>
 
-  <script src="app.js?aa5aae1"></script>
+  <script>
+    window.devMode = false
+  </script>
+
+  <script src="app.js?d53040e"></script>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-90557798-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+      (function (d, w, c) {
+          (w[c] = w[c] || []).push(function() {
+              try {
+                  w.yaCounter42223864 = new Ya.Metrika({
+                      id:42223864,
+                      clickmap:true,
+                      trackLinks:true,
+                      accurateTrackBounce:true
+                  });
+              } catch(e) { }
+          });
+
+          var n = d.getElementsByTagName("script")[0],
+              s = d.createElement("script"),
+              f = function () { n.parentNode.insertBefore(s, n); };
+          s.type = "text/javascript";
+          s.async = true;
+          s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+          if (w.opera == "[object Opera]") {
+              d.addEventListener("DOMContentLoaded", f, false);
+          } else { f(); }
+      })(document, window, "yandex_metrika_callbacks");
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/42223864" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
 </body>
 </html>
