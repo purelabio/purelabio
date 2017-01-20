@@ -36,10 +36,11 @@ function MacBook () {
       }} />
       <div className='abs-t translate-x-50p bg-top-center' style={{
         top: '40px',
-        right: '50%',
-        width: '494px',
+        right: '386px',
+        width: '496px',
         height: '289px',
-        backgroundImage: 'url(/images/projects/tobox-0.jpg)'
+        backgroundImage: 'url(/images/projects/tobox-0.jpg)',
+        backgroundSize: '496px',
       }}>
 
       </div>
