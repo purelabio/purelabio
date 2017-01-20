@@ -73,11 +73,10 @@ function Skills () {
               Mobile: Android, iOS;
             </li>
             <li>
-              Backend: Ruby, Python, Go, Java,
-              Spring Framework, Hibernate ORM, JavaEE (Glassfish, Weblogic), Servlets;
+              Backend: Ruby, Python, Go;
             </li>
             <li>
-              Databases: Postgres, Cassandra.
+              Databases: Postgres.
             </li>
           </ul>
         </div>
@@ -151,7 +150,7 @@ function Projects () {
       <div className='align-center children-margin-1x5-v'>
         <h2>Our projects</h2>
         <Carousel>
-          <CarouselItem pics={['tobox-0.png', 'tobox-1.png']}
+          <CarouselItem pics={['tobox-0.jpg', 'tobox-1.jpg']}
                         id='ToBox' href='//tobox.com/' />
           <CarouselItem pics={['fiesta-0.jpg', 'fiesta-1.jpg']}
                         id='Ford Fiesta' href='//fiesta.ford.ru/' />
@@ -161,6 +160,8 @@ function Projects () {
                         id='Ford EcoSport' href='//ecosport.ford.ru/' />
           <CarouselItem pics={['poi-0.jpg', 'poi-1.jpg']}
                         id='Just POI' href='//prostopoi.ru/' />
+          <CarouselItem pics={['mediasem-0.jpg', 'mediasem-1.jpg']}
+                        id='Mediaseminar' href='//mediaseminar.ru/' />
         </Carousel>
       </div>
     </div>
