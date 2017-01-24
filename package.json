@@ -39,7 +39,7 @@
     "gulp-util": "3.0.7",
     "gulp-watch": "4.3.10",
     "lodash": "4.17.2",
-    "prax": "0.0.87",
+    "prax": "0.0.92",
     "react": "15.3.2",
     "react-dom": "15.3.2",
     "react-router": "3.0.0",
@@ -48,6 +48,6 @@
     "webpack": "1.13.3",
     "webpack-dev-middleware": "1.8.4",
     "webpack-hot-middleware": "2.13.2",
-    "xhttp": "0.1.0"
+    "xhttp": "0.3.1"
   }
 }

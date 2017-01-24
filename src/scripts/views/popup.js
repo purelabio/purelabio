@@ -77,6 +77,6 @@ function request (read, env) {
         alter(putIn, xhrMessagePath, ok ? okMessage : null),
         alter(putIn, xhrErrorPath, ok ? null : error || `Unexpected error (status ${status})`),
       ))
-    }))
+    }).start())
   ))
 }

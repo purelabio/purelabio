@@ -1,4 +1,5 @@
-import {putIn, putInBy, negate, isBoolean, isFunction, validate} from 'prax'
+import {putIn, patchIn, putInBy, negate, ifonly, not, val,
+  isBoolean, isFunction, isDict, validate} from 'prax'
 
 export function togglePopup (state, name) {
   return putInBy(state, ['popups', name], negate)
@@ -27,3 +28,13 @@ export function addEvent (target, eventName, fun, useCapture = false) {
 export function preventDefault (event) {
   event.preventDefault()
 }
+
+export function merge (...values) {
+  return values.reduce(mergeTwo)
+}
+
+function mergeTwo (one, other) {
+  return patchIn(one, [], toDict(other))
+}
+
+const toDict = ifonly(not(isDict), val({}))

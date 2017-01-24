@@ -1,14 +1,23 @@
-import {global, Atom, getIn, putIn, defonce, flat, seq} from 'prax'
+import {global, Atom, defonce, getIn, putIn, flat, seq, isFunction} from 'prax'
+import {merge} from './utils'
 
-const feats = flat([
-  require('./features/misc'),
-].filter(Boolean))
+export const env = defonce(global, ['app', 'env'], Atom)
 
-const extract = key => flat(feats.map(x => x[key]).filter(Boolean))
+/**
+ * Setup
+ */
 
-export const featureSetup = env => seq(...extract('setup').map(fun => fun(env)))
+const extract = (features, key) => flat(features.map(x => x[key]).filter(Boolean))
 
-export const env = defonce(global, ['env'], Atom)
+export function featureSetup (env, features) {
+  // Side-effectful functions that react to data changes
+  env.watchers = extract(features, 'watchers')
+
+  // Initial state
+  env.state = merge(...extract(features, 'defaults'), env.state)
+
+  return seq(...extract(features, 'setup').map(fun => fun(env)).filter(isFunction))
+}
 
 /**
  * Debug
