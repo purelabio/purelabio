@@ -48,42 +48,68 @@ function MacBook () {
   )
 }
 
+function Icon ({filename, title}) {
+  return (
+    <div className='bg-contain'
+         style={{
+           width: '5rem',
+           height: '5rem',
+           backgroundImage: `url(/images/${filename})`
+         }}
+         alt={title} alt='' />
+  )
+}
+
 function Skills () {
   return (
     <div>
       <a id='whoweare' />
       <div className='container children-margin-1x5-v'>
         <div>
-          <h2>Preferred Skills and Technologies:</h2>
+          <h2>Preferred Skills and Technologies</h2>
           <ul className='color-text-light'>
             <li>
-              Frontend: ES2015-2017, React, Prax, Flux, D3.js, SCSS, Stylebox, Gulp, Webpack, ClojureScript;
+              Frontend: ES2015-2017, React, Prax, Flux, D3.js, SCSS, Stylebox, Gulp, Webpack, ClojureScript
             </li>
             <li>
-              Backend: Node, Clojure, Erlang, Haskell;
+              Backend: Node, Clojure, Erlang, Haskell
             </li>
-            <li>
-              Databases: Firebase, Datomic.
+            <li>              Databases: Firebase, Datomic.
             </li>
           </ul>
         </div>
+        <div className='row-around-center padding-1-t padding-4-b'>
+          <Icon filename='javascript.svg' title='JavaScript' />
+          <Icon filename='react.svg' title='React' />
+          <Icon filename='flux.svg' title='Flux' />
+          <Icon filename='firebase.svg' title='Firebase' />
+          <Icon filename='webpack.svg' title='Webpack' />
+          <Icon filename='d3.svg' title='D3.js' />
+        </div>
         <div>
-          <h2>Secondary Skills and Technologies:</h2>
+          <h2>Secondary Skills and Technologies</h2>
           <ul className='color-text-light'>
             <li>
-              Mobile: Android, iOS;
+              Mobile: Android, iOS
             </li>
             <li>
-              Backend: Ruby, Python, Go;
+              Backend: Ruby, Python, Go
             </li>
             <li>
-              Databases: Postgres.
+              Databases: Postgres
             </li>
           </ul>
+        </div>
+        <div className='row-around-center padding-1-t padding-4-b'>
+          <Icon filename='ios.svg' title='iOS' />
+          <Icon filename='android.svg' title='Android' />
+          <Icon filename='ruby.svg' title='Ruby' />
+          <Icon filename='python.svg' title='Python' />
+          <Icon filename='postgresql.svg' title='PostgreSQL' />
         </div>
         {void (
         <div>
-          <h2>Preferred Projects:</h2>
+          <h2>Preferred Projects</h2>
           <ul className='color-text-light'>
             <li>
               Web Single Page Applications
@@ -106,31 +132,30 @@ function Skills () {
             </li>
           </ul>
         </div>)}
-        <div className='bg-contain'
-             style={{
-               height: '5rem',
-               backgroundImage: 'url(/images/react.svg)'
-             }} />
         <div>
-          <h2>We do:</h2>
+          <h2>We do</h2>
           <ul className='color-text-light'>
             <li>
-              Single page applications&nbsp;&mdash; using latest
-              technologies and approaches;
+              Single page applications&nbsp;&mdash; using latest technologies and approaches
             </li>
             <li>
               Continuous integration and delivery&nbsp;&mdash; build
-              and deploy to&nbsp;production automatically;
+              and deploy to&nbsp;production automatically
             </li>
             <li>
               Functional programming&nbsp;&mdash; it&nbsp;lets&nbsp;us
-              create complex applications without defects;
+              create complex applications without defects
             </li>
             <li>
               Reactive programming&nbsp;&mdash; for highly dynamic applications
-              that update in realtime.
+              that update in realtime
             </li>
           </ul>
+        </div>
+        <div className='row-around-center padding-1-t padding-4-b'>
+          <Icon filename='git.svg' title='Git' />
+          <Icon filename='jenkins.svg' title='Jenkins' />
+          <Icon filename='haskell.svg' title='Haskell' />
         </div>
         <div>
           <p className='color-text-light'>
@@ -138,6 +163,9 @@ function Skills () {
             older technologies and languages. We're looking for an opportunity
             to get involved with ML and AI.
           </p>
+        </div>
+        <div className='row-around-center padding-1-t'>
+          <Icon filename='machine-learning.svg' title='Machine Learning' />
         </div>
       </div>
     </div>
