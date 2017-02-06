@@ -63,7 +63,7 @@
 /******/ 	}
 
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "ebfa0c732491d489b605"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "8763a01b483af9039965"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 
@@ -47709,12 +47709,12 @@
 	        { className: 'row-start-center children-margin-1-h' },
 	        React.createElement(
 	          'a',
-	          { href: '/static/agreement.pdf' },
+	          { href: '/static/agreement.pdf', target: '_blank' },
 	          'Agreement'
 	        ),
 	        React.createElement(
 	          'a',
-	          { href: '/static/tariffs.pdf' },
+	          { href: '/static/tariffs.pdf', target: '_blank' },
 	          'Tariffs'
 	        )
 	      )
