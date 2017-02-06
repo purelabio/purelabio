@@ -14,6 +14,7 @@ const webpackConfig = require('./webpack.config')
 
 const src = {
   root: 'src',
+  static: 'src/static/**/*',
   html: 'src/html/**/*',
   dist: [
     'dist/**/*',
@@ -61,6 +62,18 @@ const prod = process.env.NODE_ENV === 'production'
 gulp.task('clear', () => (
   del(out.root, {read: false}).catch(noop)
 ))
+
+/**
+ * Static
+ */
+
+gulp.task('static:copy', () => (
+  gulp.src(src.static).pipe(gulp.dest(out.root))
+))
+
+gulp.task('static:watch', () => {
+  $.watch(src.static, gulp.series('static:copy'))
+})
 
 /**
  * HTML
@@ -209,6 +222,7 @@ gulp.task('gh-pages', () => (
  */
 
 gulp.task('buildup', gulp.parallel(
+  'static:copy',
   'html:build',
   'styles:build',
   'icons:build',
@@ -216,6 +230,7 @@ gulp.task('buildup', gulp.parallel(
 ))
 
 gulp.task('watch', gulp.parallel(
+  'static:watch',
   'html:watch',
   'styles:watch',
   'icons:watch',
