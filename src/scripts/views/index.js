@@ -226,8 +226,12 @@ function Contacts () {
           </a>
         </div>
         <div className='row-start-center children-margin-1-h'>
-          <a href='/static/agreement.pdf'>Agreement</a>
-          <a href='/static/tariffs.pdf'>Tariffs</a>
+          <a href='/static/agreement.pdf' target='_blank'>
+            Agreement
+          </a>
+          <a href='/static/tariffs.pdf' target='_blank'>
+            Tariffs
+          </a>
         </div>
       </div>
     </div>
