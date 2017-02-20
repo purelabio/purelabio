@@ -180,17 +180,17 @@ function Projects () {
         <h2>Our projects</h2>
         <Carousel>
           <CarouselItem pics={['tobox-0.jpg', 'tobox-1.jpg']}
-                        id='ToBox' href='//tobox.com/' />
+                        id='ToBox' href='https://tobox.com' />
           <CarouselItem pics={['fiesta-0.jpg', 'fiesta-1.jpg']}
-                        id='Ford Fiesta' href='//fiesta.ford.ru/' />
+                        id='Ford Fiesta' href='http://fiesta.ford.ru' />
           <CarouselItem pics={['tpu-0.jpg', 'tpu-1.jpg']}
-                        id='TPU Shop' href='//shop.tpu.ru/' />
+                        id='TPU Shop' href='http://shop.tpu.ru' />
           <CarouselItem pics={['ecosport-0.jpg']}
-                        id='Ford EcoSport' href='//ecosport.ford.ru/' />
+                        id='Ford EcoSport' href='http://ecosport.ford.ru' />
           <CarouselItem pics={['poi-0.jpg', 'poi-1.jpg']}
-                        id='Just POI' href='//prostopoi.ru/' />
+                        id='Just POI' href='http://prostopoi.ru' />
           <CarouselItem pics={['mediasem-0.jpg', 'mediasem-1.jpg']}
-                        id='Mediaseminar' href='//mediaseminar.ru/' />
+                        id='Mediaseminar' href='http://mediaseminar.ru' />
         </Carousel>
       </div>
     </div>
@@ -226,11 +226,11 @@ function Contacts () {
           </a>
         </div>
         <div className='row-start-center children-margin-1-h'>
-          <a href='/static/agreement.pdf' target='_blank'>
-            Agreement
+          <a href='static/terms.pdf' target='_blank'>
+            Terms
           </a>
-          <a href='/static/tariffs.pdf' target='_blank'>
-            Tariffs
+          <a href='static/pricing.pdf' target='_blank'>
+            Pricing
           </a>
         </div>
       </div>
