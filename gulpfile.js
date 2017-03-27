@@ -7,8 +7,8 @@ const del = require('del')
 const gulp = require('gulp')
 const webpack = require('webpack')
 const {execSync, fork} = require('child_process')
-
 const webpackConfig = require('./webpack.config')
+require('./src/scripts/polyfills')
 
 /* ******************************** Globals ******************************** */
 
