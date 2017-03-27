@@ -63,7 +63,7 @@
 /******/ 	}
 
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0039de01a0c82934cf80"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b7aa62453ee4ad0c8f3a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 
@@ -47757,19 +47757,19 @@
 	        _carousel.Carousel,
 	        null,
 	        React.createElement(_carousel.CarouselItem, { pics: ['tobox-0.jpg', 'tobox-1.jpg'],
-	          id: 'ToBox', href: '//tobox.com/' }),
+	          id: 'ToBox', href: 'https://tobox.com' }),
 	        React.createElement(_carousel.CarouselItem, { pics: ['butik-0.jpg', 'butik-1.jpg'],
-	          id: 'Butik', href: '//butik.ru/' }),
+	          id: 'Butik', href: 'https://butik.ru/' }),
 	        React.createElement(_carousel.CarouselItem, { pics: ['fiesta-0.jpg', 'fiesta-1.jpg'],
-	          id: 'Ford Fiesta', href: '//fiesta.ford.ru/' }),
+	          id: 'Ford Fiesta', href: 'http://fiesta.ford.ru' }),
 	        React.createElement(_carousel.CarouselItem, { pics: ['tpu-0.jpg', 'tpu-1.jpg'],
-	          id: 'TPU Shop', href: '//shop.tpu.ru/' }),
+	          id: 'TPU Shop', href: 'http://shop.tpu.ru' }),
 	        React.createElement(_carousel.CarouselItem, { pics: ['ecosport-0.jpg'],
-	          id: 'Ford EcoSport', href: '//ecosport.ford.ru/' }),
+	          id: 'Ford EcoSport', href: 'http://ecosport.ford.ru' }),
 	        React.createElement(_carousel.CarouselItem, { pics: ['poi-0.jpg', 'poi-1.jpg'],
-	          id: 'Just POI', href: '//prostopoi.ru/' }),
+	          id: 'Just POI', href: 'http://prostopoi.ru' }),
 	        React.createElement(_carousel.CarouselItem, { pics: ['mediasem-0.jpg', 'mediasem-1.jpg'],
-	          id: 'Mediaseminar', href: '//mediaseminar.ru/' })
+	          id: 'Mediaseminar', href: 'http://mediaseminar.ru' })
 	      )
 	    )
 	  );
@@ -47808,13 +47808,13 @@
 	        { className: 'row-start-center children-margin-1-h' },
 	        React.createElement(
 	          'a',
-	          { href: '/static/agreement.pdf', target: '_blank' },
-	          'Agreement RU'
+	          { href: 'static/terms.pdf', target: '_blank' },
+	          'Terms RU'
 	        ),
 	        React.createElement(
 	          'a',
-	          { href: '/static/tariffs.pdf', target: '_blank' },
-	          'Prices RU'
+	          { href: 'static/pricing.pdf', target: '_blank' },
+	          'Pricing RU'
 	        )
 	      )
 	    )
