@@ -181,6 +181,8 @@ function Projects () {
         <Carousel>
           <CarouselItem pics={['tobox-0.jpg', 'tobox-1.jpg']}
                         id='ToBox' href='https://tobox.com' />
+          <CarouselItem pics={['butik-0.jpg', 'butik-1.jpg']}
+                        id='Butik' href='https://butik.ru/' />
           <CarouselItem pics={['fiesta-0.jpg', 'fiesta-1.jpg']}
                         id='Ford Fiesta' href='http://fiesta.ford.ru' />
           <CarouselItem pics={['tpu-0.jpg', 'tpu-1.jpg']}
