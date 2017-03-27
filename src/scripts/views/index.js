@@ -206,33 +206,18 @@ function Contacts () {
       <div className='container col-start-center children-margin-1x5-v'>
         <h2>Contacts</h2>
         <div className='col-start-stretch children-undecorated children-margin-0x5-v'>
-          <a href='skype:yury.egorenkov?chat'
-             className='row-start-center children-margin-1-h'>
-            <span className='icon icon-skype color-primary' />
-            <span>yury.egorenkov</span>
-          </a>
           <a href='mailto:info@purelab.io'
              className='row-start-center children-margin-1-h'>
             <span className='icon icon-email color-primary' />
             <span>info@purelab.io</span>
           </a>
-          <a href='tel:79169003777'
-             className='row-start-center children-margin-1-h'>
-            <span className='icon icon-call color-primary' />
-            <span>+7 916 900 3777</span>
-          </a>
-          <a href='tel:38268839813'
-             className='row-start-center children-margin-1-h'>
-            <span className='icon icon-call color-primary' />
-            <span>+382 68 839 813</span>
-          </a>
         </div>
         <div className='row-start-center children-margin-1-h'>
           <a href='static/terms.pdf' target='_blank'>
-            Terms
+            Terms RU
           </a>
           <a href='static/pricing.pdf' target='_blank'>
-            Pricing
+            Pricing RU
           </a>
         </div>
       </div>
