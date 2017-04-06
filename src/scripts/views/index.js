@@ -99,7 +99,7 @@ function Customers () {
              backgroundSize: '150px',
              backgroundRepeat: 'no-repeat',
            }}
-           href='//shanzhai.city'
+           href='http://shanzhai.city'
            target='_blank'
            title='Shanzhai City' />
         <a className='bg-top-center'
