@@ -20,6 +20,8 @@ function Header (__, {env}) {
                       uppercase font-2 weight-600 color-links-text'>
         <Link to='' style={{color: '#0097A7'}}>Purelab.io</Link>
         <a href='#whoweare'>Who we are</a>
+        <a href='#customers'>Customers</a>
+        <a href='#technologies'>Technologies</a>
         <a href='#portfolio'>Portfolio</a>
         <a href='#contacts'>Contacts</a>
       </div>

@@ -18,6 +18,7 @@ export function Index () {
         <Form />
       </div>
       <MacBook />
+      <Customers />
       <Skills />
       <Form />
       <Projects />
@@ -59,16 +60,127 @@ function Icon ({filename, title}) {
   )
 }
 
+function Customers () {
+  return (
+    <div className='container'>
+      <a id='customers' />
+      <h2>Customers</h2>
+      <div className='row-around-center children-margin-4-v'>
+        <a className='bg-top-center'
+           style={{
+             width: '200px',
+             height: '100px',
+             backgroundImage: 'url(/images/logos/butik.png)',
+             backgroundSize: '200px',
+             backgroundRepeat: 'no-repeat',
+             backgroundPosition: '0 10px',
+           }}
+           href='//butik.ru'
+           target='_blank'
+           title='Butik.ru' />
+        <a className='bg-top-center'
+           style={{
+             width: '200px',
+             height: '100px',
+             backgroundImage: 'url(/images/logos/tobox.svg)',
+             backgroundSize: '200px',
+             backgroundRepeat: 'no-repeat',
+           }}
+           href='//tobox.com'
+           target='_blank'
+           title='Tobox.com' />
+      </div>
+      <div className='row-around-center'>
+        <a className='bg-top-center'
+           style={{
+             width: '150px',
+             height: '100px',
+             backgroundImage: 'url(/images/logos/shanzhai.svg)',
+             backgroundSize: '150px',
+             backgroundRepeat: 'no-repeat',
+           }}
+           href='//shanzhai.city'
+           target='_blank'
+           title='Shanzhai City' />
+        <a className='bg-top-center'
+           style={{
+             width: '150px',
+             height: '100px',
+             backgroundImage: 'url(/images/logos/scribesense.png)',
+             backgroundSize: '150px',
+             backgroundRepeat: 'no-repeat',
+           }}
+           href='//scribesense.com'
+           target='_blank'
+           title='Scribesense' />
+      </div>
+    </div>
+  )
+}
+
 function Skills () {
   return (
     <div>
-      <a id='whoweare' />
       <div className='container children-margin-1x5-v'>
         <div>
+          <a id='whoweare' />
+          <h2>Advantages</h2>
+          <ul className='color-text-light'>
+            <li>
+              Expert team: you get a cohesive team of web application experts, sure to produce a quality product
+            </li>
+            <li>
+              Fast results: we do incremental development and delivery, each week produces a new feature or a significant improvement
+            </li>
+            <li>
+              Long-term maintainability: we architect apps that are easy to maintain and extend. Stack and architecture knowledge is common in the team
+            </li>
+          </ul>
+        </div>
+        <div className='row-around-center padding-1-t padding-4-b'>
+          <Icon filename='logos/git.svg' title='Git' />
+          <Icon filename='logos/jenkins.svg' title='Jenkins' />
+          <Icon filename='logos/haskell.svg' title='Haskell' />
+        </div>
+
+        {/*<div>
+          <h2>We do</h2>
+          <ul className='color-text-light'>
+            <li>
+              Single page applications&nbsp;&mdash; using latest technologies and approaches
+            </li>
+            <li>
+              Continuous integration and delivery&nbsp;&mdash; build
+              and deploy to&nbsp;production automatically
+            </li>
+            <li>
+              Functional programming&nbsp;&mdash; lets&nbsp;us
+              create complex applications without defects
+            </li>
+            <li>
+              Reactive programming&nbsp;&mdash; for highly dynamic applications
+              that update in realtime
+            </li>
+          </ul>
+        </div>*/}
+
+        <div>
+          <h2>For whom</h2>
+          <p className='color-text-light'>
+            Ideal customer is a technical startup in early stages, looking for a high-quality team, or an established company branching into a new product
+          </p>
+          <div className='row-around-center padding-1-t padding-4-b'>
+            <Icon filename='rocket.svg' title='Startup' />
+            <Icon filename='pizza.svg' title='New project' />
+          </div>
+        </div>
+
+        <div>
+          <a id='technologies' />
           <h2>Preferred Skills and Technologies</h2>
           <ul className='color-text-light'>
             <li>
-              Frontend: ES2015-2017, React, Prax, Flux, D3.js, SCSS, Stylebox, Gulp, Webpack, ClojureScript
+              Frontend: ES2015-2017, JavaScript, React, Prax, Flux, D3.js, SCSS, Stylebox, Gulp, Webpack, ClojureScript
             </li>
             <li>
               Backend: Node, Clojure, Erlang, Haskell
@@ -79,13 +191,14 @@ function Skills () {
           </ul>
         </div>
         <div className='row-around-center padding-1-t padding-4-b'>
-          <Icon filename='javascript.svg' title='JavaScript' />
-          <Icon filename='react.svg' title='React' />
-          <Icon filename='flux.svg' title='Flux' />
-          <Icon filename='firebase.svg' title='Firebase' />
-          <Icon filename='webpack.svg' title='Webpack' />
-          <Icon filename='d3.svg' title='D3.js' />
+          <Icon filename='logos/javascript.svg' title='JavaScript' />
+          <Icon filename='logos/react.svg' title='React' />
+          <Icon filename='logos/flux.svg' title='Flux' />
+          <Icon filename='logos/firebase.svg' title='Firebase' />
+          <Icon filename='logos/webpack.svg' title='Webpack' />
+          <Icon filename='logos/d3.svg' title='D3.js' />
         </div>
+
         <div>
           <h2>Secondary Skills and Technologies</h2>
           <ul className='color-text-light'>
@@ -101,14 +214,14 @@ function Skills () {
           </ul>
         </div>
         <div className='row-around-center padding-1-t padding-4-b'>
-          <Icon filename='ios.svg' title='iOS' />
-          <Icon filename='android.svg' title='Android' />
-          <Icon filename='ruby.svg' title='Ruby' />
-          <Icon filename='python.svg' title='Python' />
-          <Icon filename='postgresql.svg' title='PostgreSQL' />
+          <Icon filename='logos/ios.svg' title='iOS' />
+          <Icon filename='logos/android.svg' title='Android' />
+          <Icon filename='logos/ruby.svg' title='Ruby' />
+          <Icon filename='logos/python.svg' title='Python' />
+          <Icon filename='logos/postgresql.svg' title='PostgreSQL' />
         </div>
-        {void (
-        <div>
+
+        {/* <div>
           <h2>Preferred Projects</h2>
           <ul className='color-text-light'>
             <li>
@@ -131,32 +244,8 @@ function Skills () {
               </ul>
             </li>
           </ul>
-        </div>)}
-        <div>
-          <h2>We do</h2>
-          <ul className='color-text-light'>
-            <li>
-              Single page applications&nbsp;&mdash; using latest technologies and approaches
-            </li>
-            <li>
-              Continuous integration and delivery&nbsp;&mdash; build
-              and deploy to&nbsp;production automatically
-            </li>
-            <li>
-              Functional programming&nbsp;&mdash; lets&nbsp;us
-              create complex applications without defects
-            </li>
-            <li>
-              Reactive programming&nbsp;&mdash; for highly dynamic applications
-              that update in realtime
-            </li>
-          </ul>
-        </div>
-        <div className='row-around-center padding-1-t padding-4-b'>
-          <Icon filename='git.svg' title='Git' />
-          <Icon filename='jenkins.svg' title='Jenkins' />
-          <Icon filename='haskell.svg' title='Haskell' />
-        </div>
+        </div> */}
+
         <div>
           <p className='color-text-light'>
             We see machine learning as a promising technology that may obsolete
@@ -165,7 +254,7 @@ function Skills () {
           </p>
         </div>
         <div className='row-around-center padding-1-t'>
-          <Icon filename='machine-learning.svg' title='Machine Learning' />
+          <Icon filename='logos/machine-learning.svg' title='Machine Learning' />
         </div>
       </div>
     </div>
@@ -177,7 +266,7 @@ function Projects () {
     <div>
       <a id='portfolio' />
       <div className='align-center children-margin-1x5-v'>
-        <h2>Our projects</h2>
+        <h2>Projects</h2>
         <Carousel>
           <CarouselItem pics={['butik-0.jpg', 'butik-1.jpg']}
                         id='Butik' href='https://butik.ru/' />
@@ -212,15 +301,14 @@ function Contacts () {
             <span>info@purelab.io</span>
           </a>
         </div>
-        {true ? null :
-        <div className='row-start-center children-margin-1-h'>
+        {/* <div className='row-start-center children-margin-1-h'>
           <a href='static/terms.pdf' target='_blank'>
             Terms RU
           </a>
           <a href='static/pricing.pdf' target='_blank'>
             Pricing RU
           </a>
-        </div>}
+        </div> */}
       </div>
     </div>
   )
