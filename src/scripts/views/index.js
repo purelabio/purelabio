@@ -42,7 +42,6 @@ function MacBook () {
         backgroundImage: 'url(/images/projects/tobox-0.jpg)',
         backgroundSize: '496px',
       }}>
-
       </div>
     </div>
   )
@@ -74,7 +73,8 @@ function Skills () {
             <li>
               Backend: Node, Clojure, Erlang, Haskell
             </li>
-            <li>              Databases: Firebase, Datomic.
+            <li>
+              Databases: Firebase, Datomic
             </li>
           </ul>
         </div>
@@ -143,7 +143,7 @@ function Skills () {
               and deploy to&nbsp;production automatically
             </li>
             <li>
-              Functional programming&nbsp;&mdash; it&nbsp;lets&nbsp;us
+              Functional programming&nbsp;&mdash; lets&nbsp;us
               create complex applications without defects
             </li>
             <li>
@@ -179,10 +179,10 @@ function Projects () {
       <div className='align-center children-margin-1x5-v'>
         <h2>Our projects</h2>
         <Carousel>
-          <CarouselItem pics={['tobox-0.jpg', 'tobox-1.jpg']}
-                        id='ToBox' href='https://tobox.com' />
           <CarouselItem pics={['butik-0.jpg', 'butik-1.jpg']}
                         id='Butik' href='https://butik.ru/' />
+          <CarouselItem pics={['tobox-0.jpg', 'tobox-1.jpg']}
+                        id='ToBox' href='https://tobox.com' />
           <CarouselItem pics={['fiesta-0.jpg', 'fiesta-1.jpg']}
                         id='Ford Fiesta' href='http://fiesta.ford.ru' />
           <CarouselItem pics={['tpu-0.jpg', 'tpu-1.jpg']}
@@ -212,6 +212,7 @@ function Contacts () {
             <span>info@purelab.io</span>
           </a>
         </div>
+        {true ? null :
         <div className='row-start-center children-margin-1-h'>
           <a href='static/terms.pdf' target='_blank'>
             Terms RU
@@ -219,7 +220,7 @@ function Contacts () {
           <a href='static/pricing.pdf' target='_blank'>
             Pricing RU
           </a>
-        </div>
+        </div>}
       </div>
     </div>
   )
