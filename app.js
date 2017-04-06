@@ -63,7 +63,7 @@
 /******/ 	}
 
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b7aa62453ee4ad0c8f3a"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "252075ea21fa5deaf8de"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 
@@ -47042,6 +47042,16 @@
 	      ),
 	      React.createElement(
 	        'a',
+	        { href: '#customers' },
+	        'Customers'
+	      ),
+	      React.createElement(
+	        'a',
+	        { href: '#technologies' },
+	        'Technologies'
+	      ),
+	      React.createElement(
+	        'a',
 	        { href: '#portfolio' },
 	        'Portfolio'
 	      ),
@@ -47187,40 +47197,42 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.Xhttp = Xhttp;
 	exports.Xhr = Xhr;
 	exports.xhrInitParams = xhrInitParams;
 	exports.xhrSetMultiCallback = xhrSetMultiCallback;
-	exports.xhrStart = xhrStart;
 	exports.xhrOpen = xhrOpen;
 	exports.xhrSendHeaders = xhrSendHeaders;
 	exports.xhrSendBody = xhrSendBody;
+	exports.xhrStart = xhrStart;
+	exports.xhrOnDone = xhrOnDone;
 	exports.xhrDestroy = xhrDestroy;
+	exports.xhrFlushCallbacks = xhrFlushCallbacks;
+	exports.xhrGetDecodedResponseBody = xhrGetDecodedResponseBody;
 	exports.parseParams = parseParams;
 	exports.eventToResult = eventToResult;
-	exports.xhrGetDecodedResponseBody = xhrGetDecodedResponseBody;
 	exports.isJSONEncodable = isJSONEncodable;
 	exports.isStatusOk = isStatusOk;
 	exports.headersToDict = headersToDict;
 	/**
-	 * TODO
-	 *   shorter function names
-	 */
-
-	/**
 	 * Shortcuts
 	 */
 
-	function Xhr(params, onDone) {
+	function Xhttp(params) {
+	  return Xhr(params, function onXhrDone(event) {
+	    this.result = eventToResult(event);
+	    xhrFlushCallbacks(this, this.result);
+	  });
+	}
+
+	function Xhr(params, fun) {
+	  validate(isFunction, fun);
 	  var xhr = new XMLHttpRequest();
 	  xhrInitParams(xhr, params);
-
-	  xhrSetMultiCallback(xhr, function xhrDone(event) {
-	    xhr.result = eventToResult(event);
-	    if (isFunction(onDone)) onDone(xhr.result);
-	  });
-
 	  xhr.start = xhrStart.bind(null, xhr);
-
+	  xhr.callbacks = [];
+	  xhr.onDone = xhrOnDone.bind(null, xhr);
+	  xhrSetMultiCallback(xhr, fun);
 	  return xhr;
 	}
 
@@ -47232,21 +47244,16 @@
 	  xhr.params = parseParams(params);
 	}
 
+	// WTB shorter name
 	function xhrSetMultiCallback(xhr, fun) {
 	  validate(isFunction, fun);
+	  // Only one will ever be called.
 	  xhr.onabort = xhr.onerror = xhr.onload = xhr.ontimeout = fun;
 	}
 
-	function xhrStart(xhr) {
-	  xhrOpen(xhr);
-	  xhrSendHeaders(xhr);
-	  xhrSendBody(xhr);
-	  return xhr;
-	}
-
 	function xhrOpen(xhr) {
-	  // In some circumstances Chrome may fail to report upload progress. Accessing
-	  // `.upload` before opening the request magically solves the problem.
+	  // In some circumstances Chrome may fail to report upload progress unless you
+	  // access `.upload` before opening the request.
 	  xhr.upload;
 	  var _xhr$params = xhr.params,
 	      method = _xhr$params.method,
@@ -47276,14 +47283,49 @@
 	  return xhr;
 	}
 
+	function xhrStart(xhr) {
+	  if (xhr.readyState === xhr.UNSENT || xhr.readyState === xhr.DONE) {
+	    xhrOpen(xhr);
+	    xhrSendHeaders(xhr);
+	    xhrSendBody(xhr);
+	  }
+	  return xhr;
+	}
+
+	function xhrOnDone(xhr, fun) {
+	  validate(isFunction, fun);
+	  if (xhr.status !== xhr.DONE) xhr.callbacks.push(fun);
+	  return xhr;
+	}
+
 	function xhrDestroy(xhr) {
 	  if (isObject(xhr) && isFunction(xhr.abort)) xhr.abort();
+	}
+
+	function xhrFlushCallbacks(xhr, input) {
+	  try {
+	    while (xhr.callbacks.length) {
+	      xhr.callbacks.shift().call(xhr, input);
+	    }
+	  } catch (err) {
+	    xhrFlushCallbacks(xhr, input);
+	    throw err;
+	  }
 	}
 
 	/**
 	 * Secondary Utils
 	 */
 
+	// TODO document
+	function xhrGetDecodedResponseBody(xhr) {
+	  var type = xhr.getResponseHeader('content-type');
+
+	  return (/json/.test(type) ? jsonDecode(xhr.responseText) : /html/.test(type) ? new DOMParser().parseFromString(xhr.responseText, 'text/html') : /xml/.test(type) ? new DOMParser().parseFromString(xhr.responseText, 'text/xml') : xhr.responseText
+	  );
+	}
+
+	// TODO document
 	function parseParams(rawParams) {
 	  validate(isDict, rawParams);
 	  validate(isString, rawParams.url);
@@ -47302,7 +47344,7 @@
 	}
 
 	function eventToResult(event) {
-	  // Get timestamp before spending time on parsing
+	  // Get the timestamp before spending time on parsing
 	  var completedAt = Date.now();
 	  var xhr = event.target,
 	      reason = event.type;
@@ -47321,13 +47363,6 @@
 	    headers: headersToDict(xhr.getAllResponseHeaders()),
 	    body: xhrGetDecodedResponseBody(xhr)
 	  };
-	}
-
-	function xhrGetDecodedResponseBody(xhr) {
-	  var type = xhr.getResponseHeader('content-type');
-
-	  return (/json/.test(type) ? jsonDecode(xhr.responseText) : /html/.test(type) ? new DOMParser().parseFromString(xhr.responseText, 'text/html') : /xml/.test(type) ? new DOMParser().parseFromString(xhr.responseText, 'text/xml') : xhr.responseText
-	  );
 	}
 
 	function isReadOnly(method) {
@@ -47518,6 +47553,7 @@
 	      React.createElement(Form, null)
 	    ),
 	    React.createElement(MacBook, null),
+	    React.createElement(Customers, null),
 	    React.createElement(Skills, null),
 	    React.createElement(Form, null),
 	    React.createElement(Projects, null),
@@ -47558,17 +47594,139 @@
 	    alt: title }, 'alt', ''));
 	}
 
+	function Customers() {
+	  return React.createElement(
+	    'div',
+	    { className: 'container' },
+	    React.createElement('a', { id: 'customers' }),
+	    React.createElement(
+	      'h2',
+	      null,
+	      'Customers'
+	    ),
+	    React.createElement(
+	      'div',
+	      { className: 'row-around-center children-margin-4-v' },
+	      React.createElement('a', { className: 'bg-top-center',
+	        style: {
+	          width: '200px',
+	          height: '100px',
+	          backgroundImage: 'url(/images/logos/butik.png)',
+	          backgroundSize: '200px',
+	          backgroundRepeat: 'no-repeat',
+	          backgroundPosition: '0 10px'
+	        },
+	        href: '//butik.ru',
+	        target: '_blank',
+	        title: 'Butik.ru' }),
+	      React.createElement('a', { className: 'bg-top-center',
+	        style: {
+	          width: '200px',
+	          height: '100px',
+	          backgroundImage: 'url(/images/logos/tobox.svg)',
+	          backgroundSize: '200px',
+	          backgroundRepeat: 'no-repeat'
+	        },
+	        href: '//tobox.com',
+	        target: '_blank',
+	        title: 'Tobox.com' })
+	    ),
+	    React.createElement(
+	      'div',
+	      { className: 'row-around-center' },
+	      React.createElement('a', { className: 'bg-top-center',
+	        style: {
+	          width: '150px',
+	          height: '100px',
+	          backgroundImage: 'url(/images/logos/shanzhai.svg)',
+	          backgroundSize: '150px',
+	          backgroundRepeat: 'no-repeat'
+	        },
+	        href: '//shanzhai.city',
+	        target: '_blank',
+	        title: 'Shanzhai City' }),
+	      React.createElement('a', { className: 'bg-top-center',
+	        style: {
+	          width: '150px',
+	          height: '100px',
+	          backgroundImage: 'url(/images/logos/scribesense.png)',
+	          backgroundSize: '150px',
+	          backgroundRepeat: 'no-repeat'
+	        },
+	        href: '//scribesense.com',
+	        target: '_blank',
+	        title: 'Scribesense' })
+	    )
+	  );
+	}
+
 	function Skills() {
 	  return React.createElement(
 	    'div',
 	    null,
-	    React.createElement('a', { id: 'whoweare' }),
 	    React.createElement(
 	      'div',
 	      { className: 'container children-margin-1x5-v' },
 	      React.createElement(
 	        'div',
 	        null,
+	        React.createElement('a', { id: 'whoweare' }),
+	        React.createElement(
+	          'h2',
+	          null,
+	          'Advantages'
+	        ),
+	        React.createElement(
+	          'ul',
+	          { className: 'color-text-light' },
+	          React.createElement(
+	            'li',
+	            null,
+	            'Expert team: you get a cohesive team of web application experts, sure to produce a quality product'
+	          ),
+	          React.createElement(
+	            'li',
+	            null,
+	            'Fast results: we do incremental development and delivery, each week produces a new feature or a significant improvement'
+	          ),
+	          React.createElement(
+	            'li',
+	            null,
+	            'Long-term maintainability: we architect apps that are easy to maintain and extend. Stack and architecture knowledge is common in the team'
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'row-around-center padding-1-t padding-4-b' },
+	        React.createElement(Icon, { filename: 'logos/git.svg', title: 'Git' }),
+	        React.createElement(Icon, { filename: 'logos/jenkins.svg', title: 'Jenkins' }),
+	        React.createElement(Icon, { filename: 'logos/haskell.svg', title: 'Haskell' })
+	      ),
+	      React.createElement(
+	        'div',
+	        null,
+	        React.createElement(
+	          'h2',
+	          null,
+	          'For whom'
+	        ),
+	        React.createElement(
+	          'p',
+	          { className: 'color-text-light' },
+	          'Ideal customer is a technical startup in early stages, looking for a high-quality team, or an established company branching into a new product'
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'row-around-center padding-1-t padding-4-b' },
+	          React.createElement(Icon, { filename: 'rocket.svg', title: 'Startup' }),
+	          React.createElement(Icon, { filename: 'pizza.svg', title: 'New project' })
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        null,
+	        React.createElement('a', { id: 'technologies' }),
 	        React.createElement(
 	          'h2',
 	          null,
@@ -47580,7 +47738,7 @@
 	          React.createElement(
 	            'li',
 	            null,
-	            'Frontend: ES2015-2017, React, Prax, Flux, D3.js, SCSS, Stylebox, Gulp, Webpack, ClojureScript'
+	            'Frontend: ES2015-2017, JavaScript, React, Prax, Flux, D3.js, SCSS, Stylebox, Gulp, Webpack, ClojureScript'
 	          ),
 	          React.createElement(
 	            'li',
@@ -47590,19 +47748,19 @@
 	          React.createElement(
 	            'li',
 	            null,
-	            '              Databases: Firebase, Datomic.'
+	            'Databases: Firebase, Datomic'
 	          )
 	        )
 	      ),
 	      React.createElement(
 	        'div',
 	        { className: 'row-around-center padding-1-t padding-4-b' },
-	        React.createElement(Icon, { filename: 'javascript.svg', title: 'JavaScript' }),
-	        React.createElement(Icon, { filename: 'react.svg', title: 'React' }),
-	        React.createElement(Icon, { filename: 'flux.svg', title: 'Flux' }),
-	        React.createElement(Icon, { filename: 'firebase.svg', title: 'Firebase' }),
-	        React.createElement(Icon, { filename: 'webpack.svg', title: 'Webpack' }),
-	        React.createElement(Icon, { filename: 'd3.svg', title: 'D3.js' })
+	        React.createElement(Icon, { filename: 'logos/javascript.svg', title: 'JavaScript' }),
+	        React.createElement(Icon, { filename: 'logos/react.svg', title: 'React' }),
+	        React.createElement(Icon, { filename: 'logos/flux.svg', title: 'Flux' }),
+	        React.createElement(Icon, { filename: 'logos/firebase.svg', title: 'Firebase' }),
+	        React.createElement(Icon, { filename: 'logos/webpack.svg', title: 'Webpack' }),
+	        React.createElement(Icon, { filename: 'logos/d3.svg', title: 'D3.js' })
 	      ),
 	      React.createElement(
 	        'div',
@@ -47635,92 +47793,11 @@
 	      React.createElement(
 	        'div',
 	        { className: 'row-around-center padding-1-t padding-4-b' },
-	        React.createElement(Icon, { filename: 'ios.svg', title: 'iOS' }),
-	        React.createElement(Icon, { filename: 'android.svg', title: 'Android' }),
-	        React.createElement(Icon, { filename: 'ruby.svg', title: 'Ruby' }),
-	        React.createElement(Icon, { filename: 'python.svg', title: 'Python' }),
-	        React.createElement(Icon, { filename: 'postgresql.svg', title: 'PostgreSQL' })
-	      ),
-	      void React.createElement(
-	        'div',
-	        null,
-	        React.createElement(
-	          'h2',
-	          null,
-	          'Preferred Projects'
-	        ),
-	        React.createElement(
-	          'ul',
-	          { className: 'color-text-light' },
-	          React.createElement(
-	            'li',
-	            null,
-	            'Web Single Page Applications',
-	            React.createElement(
-	              'ul',
-	              null,
-	              React.createElement(
-	                'li',
-	                null,
-	                'For us, web single page applications are the most preferable type of project because we have lots of experience and a toolkit for building them.'
-	              )
-	            )
-	          ),
-	          React.createElement(
-	            'li',
-	            null,
-	            'Machine Learning and AI',
-	            React.createElement(
-	              'ul',
-	              null,
-	              React.createElement(
-	                'li',
-	                null,
-	                'We see this as a very promising technology, and are looking for'
-	              )
-	            )
-	          )
-	        )
-	      ),
-	      React.createElement(
-	        'div',
-	        null,
-	        React.createElement(
-	          'h2',
-	          null,
-	          'We do'
-	        ),
-	        React.createElement(
-	          'ul',
-	          { className: 'color-text-light' },
-	          React.createElement(
-	            'li',
-	            null,
-	            'Single page applications\xA0\u2014 using latest technologies and approaches'
-	          ),
-	          React.createElement(
-	            'li',
-	            null,
-	            'Continuous integration and delivery\xA0\u2014 build and deploy to\xA0production automatically'
-	          ),
-	          React.createElement(
-	            'li',
-	            null,
-	            'Functional programming\xA0\u2014 it\xA0lets\xA0us create complex applications without defects'
-	          ),
-	          React.createElement(
-	            'li',
-	            null,
-	            'Reactive programming\xA0\u2014 for highly dynamic applications that update in realtime'
-	          )
-	        )
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'row-around-center padding-1-t padding-4-b' },
-	        React.createElement(Icon, { filename: 'git.svg', title: 'Git' }),
-	        React.createElement(Icon, { filename: 'jenkins.svg', title: 'Jenkins' }),
-	        React.createElement(Icon, { filename: 'haskell.svg', title: 'Haskell' })
+	        React.createElement(Icon, { filename: 'logos/ios.svg', title: 'iOS' }),
+	        React.createElement(Icon, { filename: 'logos/android.svg', title: 'Android' }),
+	        React.createElement(Icon, { filename: 'logos/ruby.svg', title: 'Ruby' }),
+	        React.createElement(Icon, { filename: 'logos/python.svg', title: 'Python' }),
+	        React.createElement(Icon, { filename: 'logos/postgresql.svg', title: 'PostgreSQL' })
 	      ),
 	      React.createElement(
 	        'div',
@@ -47734,7 +47811,7 @@
 	      React.createElement(
 	        'div',
 	        { className: 'row-around-center padding-1-t' },
-	        React.createElement(Icon, { filename: 'machine-learning.svg', title: 'Machine Learning' })
+	        React.createElement(Icon, { filename: 'logos/machine-learning.svg', title: 'Machine Learning' })
 	      )
 	    )
 	  );
@@ -47751,15 +47828,15 @@
 	      React.createElement(
 	        'h2',
 	        null,
-	        'Our projects'
+	        'Projects'
 	      ),
 	      React.createElement(
 	        _carousel.Carousel,
 	        null,
-	        React.createElement(_carousel.CarouselItem, { pics: ['tobox-0.jpg', 'tobox-1.jpg'],
-	          id: 'ToBox', href: 'https://tobox.com' }),
 	        React.createElement(_carousel.CarouselItem, { pics: ['butik-0.jpg', 'butik-1.jpg'],
 	          id: 'Butik', href: 'https://butik.ru/' }),
+	        React.createElement(_carousel.CarouselItem, { pics: ['tobox-0.jpg', 'tobox-1.jpg'],
+	          id: 'ToBox', href: 'https://tobox.com' }),
 	        React.createElement(_carousel.CarouselItem, { pics: ['fiesta-0.jpg', 'fiesta-1.jpg'],
 	          id: 'Ford Fiesta', href: 'http://fiesta.ford.ru' }),
 	        React.createElement(_carousel.CarouselItem, { pics: ['tpu-0.jpg', 'tpu-1.jpg'],
@@ -47801,20 +47878,6 @@
 	            null,
 	            'info@purelab.io'
 	          )
-	        )
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'row-start-center children-margin-1-h' },
-	        React.createElement(
-	          'a',
-	          { href: 'static/terms.pdf', target: '_blank' },
-	          'Terms RU'
-	        ),
-	        React.createElement(
-	          'a',
-	          { href: 'static/pricing.pdf', target: '_blank' },
-	          'Pricing RU'
 	        )
 	      )
 	    )
