@@ -1,150 +1,3 @@
-/**
- * Position
- */
-.relative {
-  position: relative; }
-
-.absolute {
-  position: absolute; }
-
-.fixed {
-  position: fixed; }
-
-/**
- * Display
- */
-.flex {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex; }
-
-.inline-block {
-  display: inline-block; }
-
-.inline {
-  display: inline; }
-
-.block, .block-100p {
-  display: block; }
-
-/**
- * Width and height
- */
-.width-25p {
-  width: 25%; }
-
-.width-50p {
-  width: 50%; }
-
-.width-75p {
-  width: 75%; }
-
-.width-100p, .block-100p {
-  width: 100%; }
-
-.height-100vh {
-  height: 100vh; }
-
-/**
- * Overflow
- */
-.overflow-hidden, .text-ellipsis {
-  overflow: hidden; }
-
-.overflow-x-scroll {
-  overflow-x: auto;
-  overflow-y: hidden; }
-
-.overflow-y-scroll {
-  overflow-x: hidden;
-  overflow-y: auto; }
-
-/**
- * Flexbox
- */
-.flex-wrap {
-  -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap; }
-
-/**
- * Geometry
- */
-.square::before, .square-cover::before, .circle-cover::before {
-  content: '';
-  display: block;
-  padding-bottom: 100%; }
-
-.circle, .circle-cover {
-  border-radius: 50%; }
-
-/**
- * Text transformation and decoration
- */
-.undecorated, .children-undecorated > *, .button, .button-primary {
-  text-decoration: none; }
-
-.uppercase {
-  text-transform: uppercase; }
-
-.lowercase {
-  text-transform: lowercase; }
-
-/**
- * Text align
- */
-.align-left {
-  text-align: left; }
-
-.align-center, .button, .button-primary {
-  text-align: center; }
-
-.align-right {
-  text-align: right; }
-
-.valign-top {
-  vertical-align: top; }
-
-.valign-middle {
-  vertical-align: middle; }
-
-.valign-bottom {
-  vertical-align: bottom; }
-
-/**
- * Cursor styles
- */
-.cursor-pointer {
-  cursor: pointer; }
-
-.cursor-default {
-  cursor: default; }
-
-.no-pointer-styles {
-  pointer-events: none; }
-
-/**
- * Text wrapping
- */
-.nowrap, .text-ellipsis {
-  white-space: nowrap; }
-
-.text-ellipsis {
-  text-overflow: ellipsis; }
-
-/**
- * Font weight
- */
-.weight-light {
-  font-weight: light; }
-
-.weight-normal {
-  font-weight: normal; }
-
-.weight-bold {
-  font-weight: bold; }
-
 .row-start-start, .row-start-center, .row-start-end, .row-start-stretch, .row-center-start, .row-center-center, .row-center-end, .row-center-stretch, .row-end-start, .row-end-center, .row-end-end, .row-end-stretch, .row-around-start, .row-around-center, .row-around-end, .row-around-stretch, .row-between-start, .row-between-center, .row-between-end, .row-between-stretch, .col-start-start, .col-start-center, .col-start-end, .col-start-stretch, .col-center-start, .col-center-center, .col-center-end, .col-center-stretch, .col-end-start, .col-end-center, .col-end-end, .col-end-stretch, .col-around-start, .col-around-center, .col-around-end, .col-around-stretch, .col-between-start, .col-between-center, .col-between-end, .col-between-stretch {
   display: -webkit-box;
   display: -webkit-flex;
@@ -2048,18 +1901,6 @@
   .abs-r {
     right: 0;
     position: absolute; }
-  .abs-fit {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0; }
-  .abs-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translateY(-50%) translateX(-50%);
-            transform: translateY(-50%) translateX(-50%); }
 
 .fix {
   position: fixed; }
@@ -2091,18 +1932,6 @@
   .fix-r {
     right: 0;
     position: fixed; }
-  .fix-fit {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0; }
-  .fix-center {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translateY(-50%) translateX(-50%);
-            transform: translateY(-50%) translateX(-50%); }
 
 .relative {
   position: relative; }
@@ -2758,7 +2587,7 @@ h1, h2, h3, h4, h5, h6 {
 .block, .block-100p {
   display: block; }
 
-.overflow-hidden, .text-ellipsis {
+.overflow-hidden {
   overflow: hidden; }
 
 .input {

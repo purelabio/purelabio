@@ -63,7 +63,7 @@
 /******/ 	}
 
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "252075ea21fa5deaf8de"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "4f388ccfb9b9992d2616"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 
@@ -47197,42 +47197,40 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.Xhttp = Xhttp;
 	exports.Xhr = Xhr;
 	exports.xhrInitParams = xhrInitParams;
 	exports.xhrSetMultiCallback = xhrSetMultiCallback;
+	exports.xhrStart = xhrStart;
 	exports.xhrOpen = xhrOpen;
 	exports.xhrSendHeaders = xhrSendHeaders;
 	exports.xhrSendBody = xhrSendBody;
-	exports.xhrStart = xhrStart;
-	exports.xhrOnDone = xhrOnDone;
 	exports.xhrDestroy = xhrDestroy;
-	exports.xhrFlushCallbacks = xhrFlushCallbacks;
-	exports.xhrGetDecodedResponseBody = xhrGetDecodedResponseBody;
 	exports.parseParams = parseParams;
 	exports.eventToResult = eventToResult;
+	exports.xhrGetDecodedResponseBody = xhrGetDecodedResponseBody;
 	exports.isJSONEncodable = isJSONEncodable;
 	exports.isStatusOk = isStatusOk;
 	exports.headersToDict = headersToDict;
 	/**
+	 * TODO
+	 *   shorter function names
+	 */
+
+	/**
 	 * Shortcuts
 	 */
 
-	function Xhttp(params) {
-	  return Xhr(params, function onXhrDone(event) {
-	    this.result = eventToResult(event);
-	    xhrFlushCallbacks(this, this.result);
-	  });
-	}
-
-	function Xhr(params, fun) {
-	  validate(isFunction, fun);
+	function Xhr(params, onDone) {
 	  var xhr = new XMLHttpRequest();
 	  xhrInitParams(xhr, params);
+
+	  xhrSetMultiCallback(xhr, function xhrDone(event) {
+	    xhr.result = eventToResult(event);
+	    if (isFunction(onDone)) onDone(xhr.result);
+	  });
+
 	  xhr.start = xhrStart.bind(null, xhr);
-	  xhr.callbacks = [];
-	  xhr.onDone = xhrOnDone.bind(null, xhr);
-	  xhrSetMultiCallback(xhr, fun);
+
 	  return xhr;
 	}
 
@@ -47244,16 +47242,21 @@
 	  xhr.params = parseParams(params);
 	}
 
-	// WTB shorter name
 	function xhrSetMultiCallback(xhr, fun) {
 	  validate(isFunction, fun);
-	  // Only one will ever be called.
 	  xhr.onabort = xhr.onerror = xhr.onload = xhr.ontimeout = fun;
 	}
 
+	function xhrStart(xhr) {
+	  xhrOpen(xhr);
+	  xhrSendHeaders(xhr);
+	  xhrSendBody(xhr);
+	  return xhr;
+	}
+
 	function xhrOpen(xhr) {
-	  // In some circumstances Chrome may fail to report upload progress unless you
-	  // access `.upload` before opening the request.
+	  // In some circumstances Chrome may fail to report upload progress. Accessing
+	  // `.upload` before opening the request magically solves the problem.
 	  xhr.upload;
 	  var _xhr$params = xhr.params,
 	      method = _xhr$params.method,
@@ -47283,49 +47286,14 @@
 	  return xhr;
 	}
 
-	function xhrStart(xhr) {
-	  if (xhr.readyState === xhr.UNSENT || xhr.readyState === xhr.DONE) {
-	    xhrOpen(xhr);
-	    xhrSendHeaders(xhr);
-	    xhrSendBody(xhr);
-	  }
-	  return xhr;
-	}
-
-	function xhrOnDone(xhr, fun) {
-	  validate(isFunction, fun);
-	  if (xhr.status !== xhr.DONE) xhr.callbacks.push(fun);
-	  return xhr;
-	}
-
 	function xhrDestroy(xhr) {
 	  if (isObject(xhr) && isFunction(xhr.abort)) xhr.abort();
-	}
-
-	function xhrFlushCallbacks(xhr, input) {
-	  try {
-	    while (xhr.callbacks.length) {
-	      xhr.callbacks.shift().call(xhr, input);
-	    }
-	  } catch (err) {
-	    xhrFlushCallbacks(xhr, input);
-	    throw err;
-	  }
 	}
 
 	/**
 	 * Secondary Utils
 	 */
 
-	// TODO document
-	function xhrGetDecodedResponseBody(xhr) {
-	  var type = xhr.getResponseHeader('content-type');
-
-	  return (/json/.test(type) ? jsonDecode(xhr.responseText) : /html/.test(type) ? new DOMParser().parseFromString(xhr.responseText, 'text/html') : /xml/.test(type) ? new DOMParser().parseFromString(xhr.responseText, 'text/xml') : xhr.responseText
-	  );
-	}
-
-	// TODO document
 	function parseParams(rawParams) {
 	  validate(isDict, rawParams);
 	  validate(isString, rawParams.url);
@@ -47344,7 +47312,7 @@
 	}
 
 	function eventToResult(event) {
-	  // Get the timestamp before spending time on parsing
+	  // Get timestamp before spending time on parsing
 	  var completedAt = Date.now();
 	  var xhr = event.target,
 	      reason = event.type;
@@ -47363,6 +47331,13 @@
 	    headers: headersToDict(xhr.getAllResponseHeaders()),
 	    body: xhrGetDecodedResponseBody(xhr)
 	  };
+	}
+
+	function xhrGetDecodedResponseBody(xhr) {
+	  var type = xhr.getResponseHeader('content-type');
+
+	  return (/json/.test(type) ? jsonDecode(xhr.responseText) : /html/.test(type) ? new DOMParser().parseFromString(xhr.responseText, 'text/html') : /xml/.test(type) ? new DOMParser().parseFromString(xhr.responseText, 'text/xml') : xhr.responseText
+	  );
 	}
 
 	function isReadOnly(method) {
@@ -47642,7 +47617,7 @@
 	          backgroundSize: '150px',
 	          backgroundRepeat: 'no-repeat'
 	        },
-	        href: '//shanzhai.city',
+	        href: 'http://shanzhai.city',
 	        target: '_blank',
 	        title: 'Shanzhai City' }),
 	      React.createElement('a', { className: 'bg-top-center',
