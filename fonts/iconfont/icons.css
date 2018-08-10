@@ -27,7 +27,6 @@
 /* If the element is `inline`, give it dimensions large enough for the icon. */
 span[class^='icon-'],
 span[class*=' icon-'] {
-  display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
